@@ -1,0 +1,1253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nishtha Dalal — Finance portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F2F8; --surface:#FFFFFF; --ink:#1F1633; --muted:#5A4F6E; --line:#DCD3E6;
+  --accent:#5B2E91; --accent-soft:#EADFF5; --yes:#0D6252; --yes-soft:#DDF1EA; --no:#9E3450; --no-soft:#F7E1E7;
+  --chart-a:#5B2E91; --chart-b:#B9A2D6;
+  --sans:"Bricolage Grotesque", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#16111F; --surface:#211A2D; --ink:#EEE8F6; --muted:#B6ABC7; --line:#3A3049;
+    --accent:#C8AAF0; --accent-soft:#33264A; --yes:#74D3B8; --yes-soft:#17342D; --no:#F29BB1; --no-soft:#3C1F29;
+    --chart-a:#C8AAF0; --chart-b:#6B5689; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16111F; --surface:#211A2D; --ink:#EEE8F6; --muted:#B6ABC7; --line:#3A3049;
+  --accent:#C8AAF0; --accent-soft:#33264A; --yes:#74D3B8; --yes-soft:#17342D; --no:#F29BB1; --no-soft:#3C1F29;
+  --chart-a:#C8AAF0; --chart-b:#6B5689; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.075rem;line-height:1.62;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:var(--accent);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--sans);line-height:1.1;margin:0;font-weight:700;letter-spacing:-0.01em}
+p{margin:0 0 1em}
+.num{font-family:var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--surface);padding:8px 12px;z-index:50}
+.skip:focus{left:12px}
+
+/* nav */
+header.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px);margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+.bar .wrap{display:flex;align-items:center;gap:20px;min-height:60px}
+.mark{font-family:var(--sans);font-weight:800;font-size:1.05rem;color:var(--ink);text-decoration:none;white-space:nowrap}
+nav.links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav.links::-webkit-scrollbar{display:none}
+nav.links a{font-family:var(--sans);font-size:.93rem;font-weight:500;color:var(--muted);text-decoration:none;padding:10px 10px;border-radius:8px;white-space:nowrap}
+nav.links a:hover,nav.links a[aria-current="true"]{color:var(--ink);background:var(--accent-soft)}
+.theme{font-family:var(--sans);background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;min-width:44px;min-height:40px;cursor:pointer;font-size:.85rem;padding:0 12px}
+@media (max-width:760px){.theme{display:none}}
+
+/* hero */
+.hero{padding:clamp(40px,7vw,88px) 0 clamp(48px,7vw,80px)}
+.hero-grid{display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:clamp(28px,6vw,72px);align-items:center}
+@media (max-width:760px){.hero-grid{grid-template-columns:1fr}.portrait{max-width:240px}}
+.hello{font-family:var(--sans);font-size:1.1rem;color:var(--muted);margin:0 0 6px}
+.hero h1{font-size:clamp(2.8rem,7.5vw,5.6rem);font-weight:800;letter-spacing:-0.04em;line-height:.92;margin-bottom:clamp(22px,3.5vw,34px)}
+.portrait{margin:0;position:relative;width:100%}
+.portrait::before{content:"";position:absolute;inset:16px -12px -12px 16px;background:var(--accent-soft);border-radius:20px;z-index:0}
+.portrait img{position:relative;z-index:1;display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:16px}
+.facts{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:0 28px;border-top:2px solid var(--ink)}
+.facts div{padding:14px 0;border-bottom:1px solid var(--line)}
+.facts dt{font-family:var(--sans);font-size:.88rem;color:var(--muted);margin-bottom:4px}
+.facts dd{margin:0;font-family:var(--sans);font-weight:600;font-size:clamp(1.02rem,1.5vw,1.18rem);line-height:1.3}
+.facts dd small{display:block;font-weight:400;font-size:.86rem;color:var(--muted);margin-top:4px;line-height:1.4}
+@media (max-width:520px){.facts{grid-template-columns:1fr}}
+.sec-head .about-text p{font-size:1.12rem;max-width:62ch;margin:0 0 1em}
+.sec-head .about-text p:first-child{font-size:clamp(1.2rem,2vw,1.4rem);color:var(--ink)}
+#about-me .sec-head{align-items:start;margin-bottom:0}
+.role{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:0 0 32px}
+.role h3{font-size:1.35rem;margin-bottom:4px}
+.role .org{font-family:var(--sans);color:var(--accent);font-weight:600;margin-bottom:10px}
+.role ul{margin:0;padding-left:1.1em}.role li{margin-bottom:.35em;max-width:66ch}
+@media (max-width:640px){.role{grid-template-columns:1fr;gap:6px}}
+
+.register{border-top:2px solid var(--ink)}
+.register-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0 10px;border-bottom:1px solid var(--line)}
+.register-head h3{font-size:1.2rem}
+.register-head p{margin:0;font-family:var(--sans);color:var(--muted);font-size:.9rem}
+.reg-row{display:grid;grid-template-columns:minmax(150px,1.1fr) minmax(170px,1.2fr) 2fr 28px;gap:20px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:16px 6px;color:var(--ink);cursor:pointer;font:inherit}
+.reg-row:hover{background:var(--accent-soft)}
+.reg-row .subj{font-family:var(--sans);font-weight:600;font-size:1.02rem}
+.reg-row .subj small{display:block;font-weight:400;color:var(--muted);font-size:.84rem;margin-top:2px}
+.reg-row .call{font-family:var(--sans);font-weight:700;font-size:1.02rem}
+.reg-row .why{color:var(--muted);font-size:1rem;line-height:1.45}
+.reg-row .go{font-family:var(--sans);color:var(--accent);font-weight:700;justify-self:end}
+.yes{color:var(--yes)} .no{color:var(--no)}
+@media (max-width:760px){
+  .reg-row{grid-template-columns:1fr 24px;gap:4px 12px}
+  .reg-row .subj{grid-column:1}
+  .reg-row .go{grid-row:1;grid-column:2}
+  .reg-row .call,.reg-row .why{grid-column:1/-1}
+}
+.js .reg-row{opacity:0;transform:translateY(6px)}
+.js .register.loaded .reg-row{animation:rise .5s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i) * 70ms + 120ms)}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.js .reg-row{opacity:1;transform:none;animation:none!important}}
+
+/* sections */
+section.block{padding:clamp(56px,8vw,96px) 0;border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:1fr 1.4fr;gap:24px;align-items:end;margin-bottom:32px}
+.sec-head h2{font-size:clamp(2rem,4.5vw,3rem);letter-spacing:-0.025em}
+.sec-head p{margin:0;color:var(--muted);max-width:56ch}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr}}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{font-family:var(--sans);font-size:.92rem;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 16px;border-radius:999px;cursor:pointer;min-height:44px}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.count{font-family:var(--sans);color:var(--muted);font-size:.9rem;margin:0 0 12px}
+
+.group{margin-top:40px}
+.group[hidden]{display:none}
+.group-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:18px}
+.group-head h3{font-size:clamp(1.35rem,2.6vw,1.8rem)}
+.group-head p{margin:0;font-family:var(--sans);color:var(--muted);font-size:.95rem}
+/* case files */
+.case{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.case[hidden]{display:none}
+.case summary{list-style:none;cursor:pointer;padding:22px clamp(18px,3vw,30px);display:grid;grid-template-columns:1fr auto;gap:10px 24px}
+.case summary::-webkit-details-marker{display:none}
+.case summary:hover h3{color:var(--accent)}
+.case .where{font-family:var(--sans);font-size:.88rem;color:var(--muted);grid-column:1}
+.case h3{font-size:clamp(1.3rem,2.4vw,1.65rem);grid-column:1}
+.case .verdict{grid-column:1;font-family:var(--sans);font-weight:600;font-size:1rem}
+.case .toggle{grid-column:2;grid-row:1/span 3;align-self:center;font-family:var(--sans);font-size:.9rem;font-weight:600;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:10px 16px;white-space:nowrap}
+.case[open] .toggle .o{display:none}
+.case:not([open]) .toggle .c{display:none}
+.figs{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px 32px;margin-top:8px;padding-top:14px;border-top:1px dashed var(--line)}
+.fig{font-family:var(--sans);min-width:120px}
+.fig b{display:block;font-size:1.45rem;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
+.fig span{font-size:.86rem;color:var(--muted);line-height:1.3;display:block;max-width:22ch}
+@media (max-width:620px){.case .toggle{grid-column:1;grid-row:auto;justify-self:start}}
+
+.case-body{padding:6px clamp(18px,3vw,30px) 30px;border-top:1px solid var(--line)}
+.case-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(20px,4vw,48px);margin-top:22px}
+@media (max-width:860px){.case-grid{grid-template-columns:1fr}}
+.case-body h4{font-size:1.02rem;margin:22px 0 8px}
+.case-body h4:first-child{margin-top:0}
+.case-body p,.case-body li{max-width:64ch}
+.case-body ul{margin:0 0 1em;padding-left:1.1em}
+.case-body li{margin-bottom:.35em}
+.note{background:var(--accent-soft);border-radius:10px;padding:16px 18px;margin:18px 0 0}
+.note h4{margin-top:0}
+.note p:last-child{margin-bottom:0}
+.tbl-wrap{overflow-x:auto;margin:6px 0 16px}
+table{border-collapse:collapse;font-family:var(--sans);font-size:.92rem;font-variant-numeric:tabular-nums;width:100%;min-width:420px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:.84rem}
+td.r,th.r{text-align:right}
+.chip{display:inline-block;font-family:var(--sans);font-size:.8rem;font-weight:600;padding:2px 9px;border-radius:999px}
+.chip.y{background:var(--yes-soft);color:var(--yes)} .chip.n{background:var(--no-soft);color:var(--no)}
+.chart{background:var(--bg);border-radius:10px;padding:14px 14px 8px;margin:4px 0 14px}
+.chart figcaption{font-family:var(--sans);font-size:.86rem;color:var(--muted);margin-top:6px;line-height:1.4}
+.chart svg{display:block;width:100%;height:auto}
+.chart text{font-family:var(--sans);fill:var(--muted);font-size:12px}
+.chart .lbl{fill:var(--ink);font-weight:600}
+.deliv{font-family:var(--sans);font-size:.92rem;color:var(--muted)}
+
+/* experience */
+.timeline{display:grid;gap:0}
+.t-item{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:26px 0;border-top:1px solid var(--line)}
+.t-item:first-child{border-top:0;padding-top:0}
+.t-when{font-family:var(--sans);font-weight:600;color:var(--muted);font-size:.95rem}
+.t-item h3{font-size:1.35rem;margin-bottom:4px}
+.t-item .org{font-family:var(--sans);color:var(--accent);font-weight:600;margin-bottom:10px;font-size:.98rem}
+.t-item ul{margin:0;padding-left:1.1em} .t-item li{margin-bottom:.35em;max-width:66ch}
+@media (max-width:640px){.t-item{grid-template-columns:1fr;gap:6px}}
+
+/* credentials */
+.cred-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(24px,5vw,56px)}
+@media (max-width:860px){.cred-grid{grid-template-columns:1fr}}
+.edu{border-top:2px solid var(--ink)}
+.edu-row{display:grid;grid-template-columns:70px 1fr auto;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.edu-row .y{font-family:var(--sans);font-weight:700}
+.edu-row .d{font-family:var(--sans);font-weight:600}
+.edu-row .d small{display:block;font-weight:400;color:var(--muted);font-size:.9rem}
+.edu-row .s{font-family:var(--sans);font-weight:700;font-variant-numeric:tabular-nums}
+.stack h3{font-size:1.15rem;margin:0 0 10px}
+.stack .item{padding:14px 0;border-bottom:1px solid var(--line)}
+.stack .item:first-of-type{border-top:2px solid var(--ink)}
+.stack .item b{font-family:var(--sans);display:block;font-weight:600}
+.stack .item span{color:var(--muted);font-size:.98rem}
+.award{margin-top:28px;background:var(--ink);color:var(--bg);border-radius:14px;padding:clamp(22px,4vw,34px)}
+.award h3{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:8px}
+.award p{margin:0;max-width:60ch;opacity:.9}
+.award a{color:inherit}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.skills span{font-family:var(--sans);font-size:.9rem;border:1px solid var(--line);border-radius:8px;padding:6px 11px;background:var(--surface)}
+
+/* contact */
+.contact{padding:clamp(56px,8vw,96px) 0 clamp(40px,6vw,64px);border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(2.2rem,6vw,4rem);letter-spacing:-0.03em;max-width:16ch;margin-bottom:22px}
+.contact-list{display:flex;flex-wrap:wrap;gap:12px}
+.contact-list a{font-family:var(--sans);font-weight:600;font-size:1.02rem;background:var(--surface);border:1px solid var(--line);padding:12px 18px;border-radius:10px;text-decoration:none;color:var(--ink);min-height:44px}
+.contact-list a:hover{border-color:var(--accent);color:var(--accent)}
+footer{font-family:var(--sans);font-size:.86rem;color:var(--muted);padding:24px 0 40px}
+
+.cvbtn{font-family:var(--sans);font-weight:600;font-size:.9rem;background:var(--accent);color:var(--bg);border:0;border-radius:999px;min-height:40px;padding:0 16px;cursor:pointer;white-space:nowrap}
+.cvbtn:hover{filter:brightness(1.1)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.btn{font-family:var(--sans);font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn.primary:hover{color:var(--bg);filter:brightness(1.1)}
+.btn[hidden]{display:none}
+.modal{position:fixed;inset:0;z-index:60;background:rgba(20,12,32,.62);display:flex;align-items:flex-start;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) 12px calc(16px + env(safe-area-inset-bottom,0px));overflow-y:auto}
+.modal[hidden]{display:none}
+.modal-box{background:var(--surface);border-radius:16px;max-width:860px;width:100%;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.modal-head{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--surface)}
+.modal-head h2{font-size:1.2rem}
+.modal-actions{display:flex;gap:8px}
+.modal-body{padding:14px;background:#e9e6ee}
+.modal-body img{display:block;width:100%;height:auto;border-radius:4px}
+.tip{position:fixed;z-index:70;pointer-events:none;background:var(--ink);color:var(--bg);font-family:var(--sans);font-size:.84rem;line-height:1.4;padding:8px 11px;border-radius:8px;max-width:260px;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.widget{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:clamp(16px,2.5vw,24px);margin-top:22px}
+.widget.inline{margin-top:0}
+.widget h4{margin:0 0 6px;font-size:1.08rem}
+.wnote{font-family:var(--sans);font-size:.9rem;color:var(--muted);margin:0 0 14px}
+.wverdict{font-family:var(--sans);font-weight:600;margin:14px 0 0}
+.wverdict.yes{color:var(--yes)} .wverdict.no{color:var(--no)}
+.linkbtn{font-family:var(--sans);background:none;border:0;color:var(--accent);font-weight:600;cursor:pointer;padding:10px 0;font-size:.9rem;text-decoration:underline;text-underline-offset:3px}
+.sliders{display:grid;gap:12px}
+.sliders label{font-family:var(--sans);font-size:.92rem;display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center}
+.sliders output{font-weight:700;font-variant-numeric:tabular-nums}
+.sliders input{grid-column:1/-1;width:100%;accent-color:var(--accent);min-height:28px}
+.wgrid{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:start}
+@media (max-width:760px){.wgrid{grid-template-columns:1fr}}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.kpis div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px}
+.kpis span{display:block;font-family:var(--sans);font-size:.82rem;color:var(--muted);line-height:1.3}
+.kpis b{display:block;font-family:var(--sans);font-size:1.5rem;font-variant-numeric:tabular-nums;margin-top:4px}
+@media (max-width:620px){.kpis{grid-template-columns:1fr}}
+.meter{display:block;height:6px;background:var(--line);border-radius:3px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.hb{display:grid;grid-template-columns:minmax(120px,1fr) 1.2fr 44px;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-family:var(--sans)}
+.hb-l b{display:block;font-size:.95rem}.hb-l span{font-size:.8rem;color:var(--muted)}
+.hb-t{height:14px;background:var(--line);border-radius:7px;overflow:hidden}
+.hb-t i{display:block;height:100%;background:var(--chart-b);border-radius:7px;transition:width .3s}
+.hb.top .hb-t i{background:var(--accent)}
+.hb-v{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.seg{display:inline-flex;flex-wrap:wrap;gap:6px;margin:0 10px 10px 0}
+.seg button{font-family:var(--sans);font-size:.88rem;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.fp-meta{font-family:var(--sans);font-size:.95rem;margin:4px 0 10px}
+.sipbar{display:flex;height:16px;border-radius:8px;overflow:hidden;margin-bottom:14px}
+.sipbar i{display:block;height:100%}
+.fp-goals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:760px){.fp-goals{grid-template-columns:1fr}}
+.fp-g{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;font-family:var(--sans);font-size:.88rem;display:flex;flex-direction:column;gap:4px}
+.fp-g b{font-size:.98rem}.fp-g strong{font-size:1.1rem;margin-top:4px}
+.fp-g .dot{width:10px;height:10px;border-radius:50%}
+.muted{color:var(--muted)}
+.forces{display:grid;gap:6px}
+.force{display:grid;grid-template-columns:minmax(150px,1.2fr) 1fr 110px;gap:12px;align-items:center;font-family:var(--sans);font-size:.92rem;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--ink);cursor:pointer;min-height:44px}
+.force[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.force em{font-style:normal;font-weight:600;text-align:right}
+.fbar{display:block;height:8px;background:var(--line);border-radius:4px;overflow:hidden}.fbar i{display:block;height:100%;background:var(--accent)}
+@media (max-width:620px){.force{grid-template-columns:1fr 80px}.force .fbar{display:none}}
+.force-out{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.force-out span{font-family:var(--sans);font-size:.85rem}.force-out p{margin:4px 0 0}
+@media (max-width:620px){.force-out{grid-template-columns:1fr}}
+.dh-row{display:grid;grid-template-columns:130px 1fr;gap:4px 12px;padding:8px 0;border-bottom:1px solid var(--line);font-family:var(--sans);font-size:.9rem}
+.dh-row>span{grid-row:span 2;align-self:center;font-weight:600}
+.dh-b{display:flex;align-items:center;gap:8px}.dh-b i{display:block;height:12px;border-radius:6px;transition:width .3s}.dh-b b{font-variant-numeric:tabular-nums;font-size:.85rem}
+.legend{font-family:var(--sans);font-size:.85rem;color:var(--muted);margin:10px 0 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 5px 0 12px;vertical-align:middle}.legend i:first-child{margin-left:0}
+.aw-row{display:grid;grid-template-columns:170px 1fr 110px;gap:12px;align-items:center;font-family:var(--sans);font-size:.92rem;padding:8px 0}
+.aw-row b{text-align:right;font-variant-numeric:tabular-nums}
+.aw-row .hb-t i{transition:width .35s}
+@media (max-width:620px){.aw-row{grid-template-columns:1fr 100px}.aw-row .hb-t{grid-column:1/-1;grid-row:2}}
+.scat svg{display:block;width:100%;max-width:620px;height:auto;margin:0 auto}
+.scat circle:focus{outline:none;stroke:var(--ink);stroke-width:2.5}
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+
+.files{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.fbtn{font-family:var(--sans);font-size:.86rem;font-weight:600;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 13px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.fbtn::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--muted)}
+.fbtn.x::before{background:#1f7a46}.fbtn.w::before{background:#2b5fb4}.fbtn.p::before{background:#c2502a}
+.fbtn:hover{border-color:var(--accent);color:var(--accent)}
+.award-files{margin-top:16px!important}
+.award .fbtn{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 45%,transparent)}
+.award .fbtn:hover{color:var(--bg);border-color:var(--bg)}
+.fmodal .modal-box{max-width:1100px;display:flex;flex-direction:column;max-height:calc(100vh - 32px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+.fmodal .modal-head{position:static;flex-shrink:0}
+.fv-tabs,.fv-note{flex-shrink:0}
+.fv-kind{display:block;font-family:var(--sans);font-size:.84rem;color:var(--muted);margin-top:2px;word-break:break-all}
+.fv-tabs{display:flex;gap:4px;overflow-x:auto;padding:8px 14px 0;border-bottom:1px solid var(--line);background:var(--surface)}
+.fv-tabs[hidden]{display:none}
+.fv-tabs button{font-family:var(--sans);font-size:.86rem;white-space:nowrap;border:1px solid var(--line);border-bottom:0;background:var(--bg);color:var(--muted);border-radius:8px 8px 0 0;padding:8px 12px;cursor:pointer;min-height:38px}
+.fv-tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:inset 0 2px 0 var(--accent)}
+.fv-body{overflow:auto;flex:1;background:var(--surface);min-height:200px}
+.fv-note{font-family:var(--sans);font-size:.84rem;color:var(--muted);margin:0;padding:10px 16px;border-top:1px solid var(--line)}
+.tw{overflow:auto}
+table.xl{border-collapse:collapse;font-family:var(--sans);font-size:.82rem;min-width:0;width:auto}
+table.xl td,table.xl th{border:1px solid var(--line);padding:5px 8px;min-width:60px;max-width:340px;vertical-align:top;overflow-wrap:break-word}
+table.xl td.n{white-space:nowrap}
+table.xl td.n{text-align:right;font-variant-numeric:tabular-nums}
+table.xl td.b,table.xl th{font-weight:700;background:var(--bg)}
+.docv{max-width:760px;margin:0 auto;padding:clamp(18px,4vw,40px)}
+.docv h2{font-size:1.5rem;margin:0 0 14px}.docv h3{font-size:1.25rem;margin:26px 0 10px}.docv h4{font-size:1.05rem;margin:20px 0 8px}
+.docv p,.docv li{font-size:1rem}
+.docv table.xl td,.docv table.xl th{white-space:normal;max-width:none;min-width:90px}
+.docv .tw{margin:12px 0 18px}
+.deck{padding:14px;display:flex;flex-direction:column;align-items:center;gap:12px;background:#2a2433}
+.deck img{display:block;width:100%;height:auto;max-width:1000px;border-radius:6px;background:#fff}
+.deck-nav{display:flex;align-items:center;gap:14px;font-family:var(--sans);color:#fff;font-size:.9rem}
+.deck-nav .btn[disabled]{opacity:.4;cursor:default}
+.skills.soft span{background:var(--accent-soft);border-color:transparent}
+.fv-loading{margin:0;padding:24px;font-family:var(--sans);color:var(--muted)}
+</style>
+</head>
+<body>
+<a class="skip" href="#projects">Skip to projects</a>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top">Nishtha Dalal</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#internship">Internships</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="cvbtn" type="button" data-cv>View CV</button>
+    <button class="theme" id="themeBtn" type="button" aria-label="Switch colour theme">Dark</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="about">
+    <div class="wrap">
+      <div class="hero-grid">
+        <figure class="portrait">
+          <img src="images/portrait.jpg" width="640" height="800" alt="Nishtha Dalal in a black blazer outside the Welingkar Institute building in Mumbai">
+        </figure>
+        <div class="hero-text">
+          <p class="hello">Hi, I'm</p>
+          <h1>Nishtha Dalal</h1>
+          <dl class="facts">
+            <div><dt>College</dt><dd>WeSchool, Mumbai<small>S P Mandali's Prin. L. Welingkar Institute of Management Development and Research</small></dd></div>
+            <div><dt>Programme</dt><dd>PGDM Business Design<small>Batch 2025–27</small></dd></div>
+            <div><dt>Major</dt><dd>Design Thinking, Strategy and Consulting</dd></div>
+            <div><dt>Minor</dt><dd>Finance</dd></div>
+          </dl>
+          <div class="hero-actions">
+            <button type="button" class="btn primary" data-cv>View my CV</button>
+            <a class="btn" href="documents/Nishtha_Dalal_CV.pdf" download="Nishtha_Dalal_CV.pdf">Download CV (PDF)</a>
+            <a class="btn" href="https://linkedin.com/in/nishtha-dalal" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about-me">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>About me</h2>
+        <div class="about-text">
+          <p>I'm a finance enthusiast interested in equity research, financial markets and investment decision-making.</p>
+          <p>Through projects in project finance, credit assessment, financial modelling and investment analysis, along with my internship at Finoability, I've gained hands-on exposure to fundamental &amp; technical analysis, financial ratios, index construction and portfolio management.</p>
+          <p>I enjoy working with data, understanding the story behind the numbers, and turning analysis into meaningful insights. I'm curious, analytical and constantly looking to learn from real-world business and market perspectives.</p>
+          <p>Currently, I'm building my journey in finance &amp; investments and exploring opportunities that challenge me to learn, think and grow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Education</h2>
+        <p>Commerce and business design, with professional finance certifications alongside.</p>
+      </div>
+      <div class="cred-grid">
+        <div>
+          <div class="edu">
+            <div class="edu-row"><span class="y">2027</span><span class="d">PGDM Business Design<small>WeSchool (Welingkar Institute), Mumbai</small></span><span class="s">8.67 CGPA</span></div>
+            <div class="edu-row"><span class="y">2024</span><span class="d">B.Com<small>Govt. Commerce Girls College, Kota</small></span><span class="s">58.38%</span></div>
+            <div class="edu-row"><span class="y">2021</span><span class="d">HSC<small>St. Paul's School</small></span><span class="s">91.8%</span></div>
+            <div class="edu-row"><span class="y">2019</span><span class="d">SSC<small>St. Paul's School</small></span><span class="s">94.4%</span></div>
+          </div>
+          <h3 style="font-size:1.15rem;margin:32px 0 10px">Technical skills</h3>
+          <div class="skills">
+            <span>Credit analysis</span><span>Equity research</span><span>Fundamental analysis</span><span>Financial statement analysis</span><span>Valuation &amp; ratio analysis</span><span>Portfolio management &amp; asset allocation</span><span>Mutual fund analysis</span><span>Risk profiling &amp; investment planning</span><span>Financial modelling in Excel</span><span>Sensitivity analysis</span><span>User journey mapping</span><span>MS Office</span><span>Canva</span>
+          </div>
+          <h3 style="font-size:1.15rem;margin:24px 0 10px">Soft skills</h3>
+          <div class="skills soft">
+            <span>Leadership &amp; teamwork</span><span>Communication</span><span>Problem solving</span><span>Management &amp; coordination</span><span>Conflict resolution</span>
+          </div>
+        </div>
+        <div class="stack">
+          <h3>Certifications</h3>
+          <div class="item"><b>CA Foundation</b><span>Cleared, Institute of Chartered Accountants of India</span></div>
+          <div class="item"><b>NISM Series V-A</b><span>Mutual Fund Distributors certification</span></div>
+          <h3 style="margin-top:28px">Kathak</h3>
+          <div class="item"><b>Prarambhik, Praveshika Pratham, Praveshika Purna</b><span>Akhil Bharatiya Gandharva Mahavidyalaya Mandal, Mumbai</span></div>
+          <p style="margin-top:14px;color:var(--muted)">Outside work: dance and music. Languages: English, Hindi.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block" id="internship">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Summer internship</h2>
+        <p>Five projects from my summer internship. Open any one to see the method and numbers.</p>
+      </div>
+      <div class="role">
+        <div class="t-when">May – June 2026</div>
+        <div>
+          <h3>Equity Research &amp; Portfolio Management Intern</h3>
+          <div class="org">Finoability Pvt. Ltd.</div>
+            <ul>
+              <li>Fundamental and technical analysis of Nifty FMCG companies using P/E, PEG, liquidity, leverage and profitability ratios; built the sector index and model portfolio.</li>
+              <li>Screened the Nifty 500 and 32 listed banks, and backtested a P/E-timing strategy on the Nifty Next 50.</li>
+              <li>Ran investor risk profiling and built goal-based plans; evaluated 1,500+ mutual fund schemes on CAGR, NAV, AUM, alpha, expense ratio, CRISIL ratings and fund manager record.</li>
+            </ul>
+        </div>
+      </div>
+      <!-- FMCG -->
+      <details class="case" id="fmcg">
+        <summary>
+          <span class="where">Finoability internship, May–June 2026. Main project</span>
+          <h3>Nifty FMCG: building the index, then a portfolio to beat it</h3>
+          <span class="verdict">Five stocks passed the valuation and ratio screens; allocated a ₹10 cr model fund</span>
+          <span class="toggle"><span class="o">Open case</span><span class="c">Close case</span></span>
+          <span class="figs">
+            <span class="fig"><b>10</b><span>constituents, rebuilt as a market-cap index from base 1,000</span></span>
+            <span class="fig"><b>51.3</b><span>average sector P/E used as the dividing line</span></span>
+            <span class="fig"><b>5 of 10</b><span>stocks accepted into the portfolio</span></span>
+          </span>
+        
+          <span class="files"><button type="button" class="fbtn x" data-file="fmcg">Open Excel</button></span>
+        </summary>
+        <div class="case-body">
+          <div class="case-grid">
+            <div>
+              <h4>What I built</h4>
+              <ul>
+                <li>A market-cap-weighted FMCG index of the ten largest constituents, rebased to 1,000 on 21 May 2026 and recalculated daily from price moves and share counts.</li>
+                <li>A two-sided valuation screen around the 51.3 average P/E. Below average: accepted if revenue and profit were both rising. Above average: accepted only if PEG was under 1.5 and positive. All five high-P/E names failed (Nestlé PEG 6.07, Godrej Consumer 9.4).</li>
+                <li>A rank on six ratios (current, quick, debt/equity, interest cover, ROE, profit margin) to decide weights.</li>
+                <li>A ₹10 cr model fund with NAV starting at ₹10, tracked daily against my index.</li>
+              </ul>
+              <h4>The tracking result, plainly</h4>
+              <p>By 25 June 2026 the fund's NAV was ₹9.65 and my index 982.2, so the portfolio fell 3.5% while the index fell 1.8%. Five weeks is too short to judge a stock screen, but the gap shows how much a 35% weight in a single name drives short-run results.</p>
+            </div>
+            <div>
+              <figure class="chart" id="chartFL"><figcaption>Five weeks of daily tracking, both rebased to 100 on 21 May 2026. Hover or tap to read any day.</figcaption></figure>
+              <figure class="chart" id="chartFM"><figcaption>Model fund allocation (₹10 crore) with the ratio rank that set each weight.</figcaption></figure>
+              <div class="tbl-wrap"><table>
+                <thead><tr><th>High-P/E stock</th><th class="r">P/E</th><th class="r">PEG</th><th>Result</th></tr></thead>
+                <tbody>
+                  <tr><td>Nestlé India</td><td class="r">79.4</td><td class="r">6.07</td><td><span class="chip n">Rejected</span></td></tr>
+                  <tr><td>Tata Consumer</td><td class="r">76.9</td><td class="r">6.13</td><td><span class="chip n">Rejected</span></td></tr>
+                  <tr><td>Marico</td><td class="r">60.8</td><td class="r">5.42</td><td><span class="chip n">Rejected</span></td></tr>
+                  <tr><td>Varun Beverages</td><td class="r">57.3</td><td class="r">2.39</td><td><span class="chip n">Rejected</span></td></tr>
+                  <tr><td>Godrej Consumer</td><td class="r">51.6</td><td class="r">9.40</td><td><span class="chip n">Rejected</span></td></tr>
+                </tbody>
+              </table></div>
+            </div>
+          </div>
+        </div>
+      </details>
+      <!-- NIFTY 500 -->
+      <details class="case" id="n500">
+        <summary>
+          <span class="where">Finoability internship, 2026. Group project</span>
+          <h3>Nifty 500: a strict eight-filter screen across the whole index</h3>
+          <span class="verdict">504 companies screened; four passed every test</span>
+          <span class="toggle"><span class="o">Open case</span><span class="c">Close case</span></span>
+          <span class="figs">
+            <span class="fig"><b>504</b><span>companies assessed</span></span>
+            <span class="fig"><b>4</b><span>selected</span></span>
+            <span class="fig"><b>≥10%</b><span>FCF / sales required</span></span>
+          </span>
+        
+          <span class="files"><button type="button" class="fbtn x" data-file="n500">Open Excel</button></span>
+        </summary>
+        <div class="case-body">
+          <div class="case-grid">
+            <div>
+              <h4>The filters</h4>
+              <p>Each company was scored on P/E, PEG (≤1.25), P/BV, debt/equity (≤0.5), gross and operating margin, interest cover, ROE and FCF/sales (≥10%), with a written note on its moat. Every rejection records the specific test it failed, so the screen can be audited line by line.</p>
+              <p>Most rejections came from cash conversion rather than valuation: many well-known names with strong margins still turned less than a tenth of sales into free cash.</p>
+            </div>
+            <div>
+              <div class="tbl-wrap"><table>
+                <thead><tr><th>Selected</th><th class="r">P/E</th><th class="r">PEG</th><th class="r">ROE</th></tr></thead>
+                <tbody>
+                  <tr><td>BLS International</td><td class="r">16.2</td><td class="r">0.32</td><td class="r">32.7%</td></tr>
+                  <tr><td>Birlasoft</td><td class="r">16.8</td><td class="r">0.89</td><td class="r">14.4%</td></tr>
+                  <tr><td>Blue Jet Healthcare</td><td class="r">31.3</td><td class="r">1.98</td><td class="r">19.9%</td></tr>
+                  <tr><td>C.E. Info Systems</td><td class="r">33.3</td><td class="r">2.97</td><td class="r">15.8%</td></tr>
+                </tbody>
+              </table></div>
+              <figure class="chart" id="chartN5"><figcaption>How often each test was cited in a rejection. One company can fail several tests.</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </details>
+      <!-- BANKS -->
+      <details class="case" id="banks">
+        <summary>
+          <span class="where">Finoability internship, 2026</span>
+          <h3>Indian banks: separate yardsticks for private and public-sector lenders</h3>
+          <span class="verdict">17 of 32 banks accepted on nine banking-specific ratios</span>
+          <span class="toggle"><span class="o">Open case</span><span class="c">Close case</span></span>
+          <span class="figs">
+            <span class="fig"><b>11 of 20</b><span>private banks accepted</span></span>
+            <span class="fig"><b>6 of 12</b><span>public-sector banks accepted</span></span>
+            <span class="fig"><b>11.5%</b><span>RBI minimum CAR used as the floor</span></span>
+          </span>
+        
+          <span class="files"><button type="button" class="fbtn x" data-file="banks">Open Excel</button></span>
+        </summary>
+        <div class="case-body">
+          <div class="case-grid">
+            <div>
+              <h4>Method</h4>
+              <p>Built a parameter sheet first: NIM, cost-to-income, gross NPA, credit growth, CASA, ROA, ROE, capital adequacy and P/BV, each with good, acceptable and poor bands. NIM gets different thresholds for private (above 3.5% is good) and PSU banks (above 2.5%), because their funding models differ.</p>
+              <p>Every accept or reject carries a one-line reason, for example Bank of Maharashtra accepted on the highest PSU ROA (1.64%) and ROE (21.11%); IndusInd rejected on 3.43% GNPA and 0.16% ROA.</p>
+            </div>
+            <div>
+              <h4>Accepted</h4>
+              <p><strong class="num">Private:</strong> HDFC Bank, ICICI Bank, Axis Bank, Kotak Mahindra, Federal Bank, Karur Vysya, City Union, J&amp;K Bank, Tamilnad Mercantile, South Indian Bank, CSB Bank.</p>
+              <p><strong class="num">Public:</strong> State Bank of India, Bank of Baroda, Union Bank, Bank of Maharashtra, Indian Overseas Bank, Indian Bank.</p>
+            </div>
+          </div>
+          <div class="widget" id="wBK"></div>
+        </div>
+      </details>
+      <!-- NN50 -->
+      <details class="case" id="nn50">
+        <summary>
+          <span class="where">Finoability internship, 2026. Valuation-timing backtest</span>
+          <h3>Nifty Next 50: does buying on P/E signals beat buying and holding?</h3>
+          <span class="verdict">₹1 lakh in 1999 grows to ₹8.53 cr on P/E timing, against about ₹39 lakh held throughout</span>
+          <span class="toggle"><span class="o">Open case</span><span class="c">Close case</span></span>
+          <span class="figs">
+            <span class="fig"><b>27 years</b><span>of daily index closes, Jan 1999 to Mar 2026</span></span>
+            <span class="fig"><b>5</b><span>buy-sell cycles</span></span>
+            <span class="fig"><b>872%</b><span>best single cycle, Sep 2001 to Oct 2007</span></span>
+          </span>
+        
+          <span class="files"><button type="button" class="fbtn x" data-file="nn50">Open Excel</button></span>
+        </summary>
+        <div class="case-body">
+          <div class="case-grid">
+            <div>
+              <h4>The setup</h4>
+              <p>₹1,00,000 invested in the Nifty Next 50 on the buy and sell dates signalled by the Nifty 50 P/E study. Between cycles the money earns fixed-deposit interest at the prevailing rate (8%, then 6.5%, then 5.7% a year), compounded daily with <span class="num">FV()</span> formulas.</p>
+              <h4>What it shows</h4>
+              <p>Buying near valuation troughs (Sep 2001, Oct 2008, Aug 2013, Mar 2020) and selling near peaks compounds far faster than holding: about ₹8.53 cr against roughly ₹39.4 lakh on the same index. The last exit in August 2020 has sat in deposits since, which is the cost of a strict rule.</p>
+              <p>This is a backtest with the benefit of hindsight on the thresholds, so I read it as evidence that valuation matters for entry, not as a return forecast.</p>
+            </div>
+            <div>
+              <figure class="chart" id="chartNN"><figcaption>Capital at each buy and sell date, log scale, ₹. Flat stretches are deposit periods between cycles.</figcaption></figure>
+              <div class="tbl-wrap"><table>
+                <thead><tr><th>Cycle</th><th>Held</th><th class="r">Return</th></tr></thead>
+                <tbody>
+                  <tr><td>Jan 1999 to Jan 2000</td><td>367 days</td><td class="r">180%</td></tr>
+                  <tr><td>Sep 2001 to Oct 2007</td><td>2,215 days</td><td class="r">872%</td></tr>
+                  <tr><td>Oct 2008 to Oct 2010</td><td>707 days</td><td class="r">213%</td></tr>
+                  <tr><td>Aug 2013 to Aug 2018</td><td>1,832 days</td><td class="r">198%</td></tr>
+                  <tr><td>Mar 2020 to Aug 2020</td><td>136 days</td><td class="r">46%</td></tr>
+                </tbody>
+              </table></div>
+            </div>
+          </div>
+        </div>
+      </details>
+      <!-- FPWP -->
+      <details class="case" id="fpwp">
+        <summary>
+          <span class="where">Finoability internship, 2026. Financial planning &amp; wealth project</span>
+          <h3>Goal-based mutual fund plans for four investor personas</h3>
+          <span class="verdict">Twelve goals mapped to twelve funds, each with a monthly SIP</span>
+          <span class="toggle"><span class="o">Open case</span><span class="c">Close case</span></span>
+          <span class="figs">
+            <span class="fig"><b>4</b><span>personas, one per age band from 20 to 60</span></span>
+            <span class="fig"><b>1,500+</b><span>schemes evaluated during the internship</span></span>
+            <span class="fig"><b>6%</b><span>inflation assumed on every goal</span></span>
+          </span>
+        
+          <span class="files"><button type="button" class="fbtn x" data-file="fpwp">Open Excel</button></span>
+        </summary>
+        <div class="case-body">
+          <div class="case-grid">
+            <div>
+              <h4>Process</h4>
+              <ul>
+                <li>A scored risk questionnaire covering age, capacity for loss, market familiarity, experience, preference and reaction to drawdowns.</li>
+                <li>Four personas (Mumbai, Indore, Delhi NCR and beyond; salaries from ₹8 to ₹40 lakh), each with a short, medium and long-term or retirement goal.</li>
+                <li>Goal cost inflated at 6%, then matched to a category by horizon: liquid or ultra-short debt up to 3 years, hybrid for 5–15 years, retirement funds beyond 15.</li>
+                <li>Funds shortlisted on CAGR, AUM, expense ratio, Sharpe ratio and CRISIL ratings, then a monthly SIP solved for each goal.</li>
+              </ul>
+            </div>
+            <div>
+              <p class="muted" style="font-family:var(--sans);font-size:.95rem">Try the planner below: each persona's goals, chosen funds and required SIPs come straight from my workbook.</p>
+            </div>
+          </div>
+          <div class="widget" id="wFP"></div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="block" id="gst">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Other internship</h2>
+        <p>Before joining the PGDM.</p>
+      </div>
+      <div class="role">
+        <div class="t-when">April – June 2025</div>
+        <div>
+          <h3>GST Compliance Intern</h3>
+          <div class="org">Happy Family Productions Pvt. Ltd.</div>
+            <ul>
+              <li>Organised 25–30 income and expense invoices a month for a YouTube channel's GST compliance, covering about ₹21 lakh in bills.</li>
+              <li>Built structured Excel reports that made monthly filing faster.</li>
+              <li>Gave the Chartered Accountant reconciled data for timely GST return filing.</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Projects</h2>
+        <p>College projects at WeSchool and a case competition. Each file shows the question, the method, the numbers and the call.</p>
+      </div>
+      <div class="register" id="register" role="region" aria-labelledby="regTitle">
+        <div class="register-head">
+          <h3 id="regTitle">The calls at a glance</h3>
+          <p>Select a row to open the full case</p>
+        </div>
+        <div id="regRows"></div>
+      </div>
+      <div style="height:40px"></div>
+      <!-- ASHOK LEYLAND -->
+      <details class="case" id="ashok">
+        <summary>
+          <span class="where">WeSchool coursework, 2026. Credit risk analysis</span>
+          <h3>Ashok Leyland: should a bank lend, and on what terms?</h3>
+          <span class="verdict yes">Approve up to ₹2,000 cr, unsecured, up to 5 years</span>
+          <span class="toggle"><span class="o">Open case</span><span class="c">Close case</span></span>
+          <span class="figs">
+            <span class="fig"><b>₹5,856 cr</b><span>net cash, FY26 (standalone)</span></span>
+            <span class="fig"><b>0.26x → 0.09x</b><span>debt / equity, FY24 to FY26</span></span>
+            <span class="fig"><b>33.8x</b><span>interest cover on reported finance cost</span></span>
+            <span class="fig"><b>AA+ / A1+</b><span>ICRA view, broadly matching mine</span></span>
+          </span>
+        
+          <span class="files"><button type="button" class="fbtn x" data-file="alx">Open Excel: credit model</button><button type="button" class="fbtn w" data-file="alr">Open Word: credit report</button><button type="button" class="fbtn w" data-file="alc">Open Word: committee sheet</button><button type="button" class="fbtn w" data-file="alk">Open Word: ICRA comparison</button><button type="button" class="fbtn w" data-file="ali">Open Word: improvement plan</button></span>
+        </summary>
+        <div class="case-body">
+          <div class="case-grid">
+            <div>
+              <h4>The question</h4>
+              <p>An independent FY24–FY26 credit view of India's second-largest M&amp;HCV maker, built from three annual reports before reading any rating agency report, ending in a lending decision with covenants.</p>
+              <h4>How I worked</h4>
+              <ul>
+                <li>Assessed the standalone company: consolidated debt of ~₹63,650 cr is mostly the NBFC arm's lending book and would show leverage at 3.4x equity against 0.09x for the vehicle business. Group risk was captured separately through guarantees and investments.</li>
+                <li>Made three adjustments that change the picture: excluded other income from operating EBITDA; stripped a ₹1,453 cr dividend-account timing swing out of cash flow; counted cash net of earmarked balances.</li>
+                <li>Reconciled total debt to the company's own capital-management note for all three years (₹2,299 / 1,482 / 1,195 cr) to confirm the extraction.</li>
+                <li>Stress-tested an FY20-style downturn: volumes down 30%, EBITDA margin at 8%, ₹1,000 cr of payables unwinding while capex and dividends continue. Interest cover stays above 25x and the company stays near net cash for about two years.</li>
+              </ul>
+              <h4>The call</h4>
+              <p>A strong credit at the top of the high-safety band, stable outlook. Approve unsecured facilities with covenants: net debt/EBITDA ≤1.5x; debt plus guarantees/net worth ≤0.5x; a cap on new funding to subsidiaries; no inter-corporate deposits to group firms outside the vehicle business; timely completion of the HLF merger.</p>
+              <p>The one number that would change my view: cash less supplier dues (−₹1,278 cr today). Past −₹3,000 cr in a falling market, I would move to a secured, shorter-tenor structure.</p>
+            </div>
+            <div>
+              <figure class="chart" id="chartAL"><figcaption>Standalone total debt (incl. leases) against net cash, ₹ crore. Debt nearly halved while cash built up.</figcaption></figure>
+              <div class="tbl-wrap"><table>
+                <thead><tr><th>Ratio</th><th class="r">FY24</th><th class="r">FY25</th><th class="r">FY26</th></tr></thead>
+                <tbody>
+                  <tr><td>Revenue (₹ cr)</td><td class="r">38,367</td><td class="r">38,753</td><td class="r">44,007</td></tr>
+                  <tr><td>EBITDA margin</td><td class="r">12.0%</td><td class="r">12.7%</td><td class="r">13.0%</td></tr>
+                  <tr><td>PAT (₹ cr)</td><td class="r">2,618</td><td class="r">3,303</td><td class="r">3,566</td></tr>
+                  <tr><td>Debt / EBITDA</td><td class="r">0.50x</td><td class="r">0.30x</td><td class="r">0.21x</td></tr>
+                  <tr><td>Cash DSCR</td><td class="r">2.9x</td><td class="r">4.5x</td><td class="r">9.5x</td></tr>
+                  <tr><td>Cash conversion cycle</td><td class="r">(7) d</td><td class="r">(30) d</td><td class="r">(32) d</td></tr>
+                </tbody>
+              </table></div>
+              <div class="note">
+                <h4>What the rating agency taught me</h4>
+                <p>Read only after my view was final. ICRA's AA+ (Stable) sits in the same band, and its FY25 interest cover of 22.7x matched mine exactly. The real gap: I weighted past capex, while ICRA weighted about ₹1,800 cr a year of planned capex and EV investment. That is the stronger argument against an AAA-equivalent view, and I accepted it. It did not change the lending decision, but it made the subsidiary-funding cap essential rather than sensible.</p>
+              </div>
+            </div>
+          </div>
+          <div class="widget" id="wAL"></div>
+          <p class="deliv" style="margin-top:20px">Deliverables: five-sheet Excel model (~40 ratios as live formulas with annual-report page references), credit report, credit committee sheet, CRA comparison, and a five-action rating-resilience plan.</p>
+        </div>
+      </details>
+      <!-- DMART -->
+      <details class="case" id="dmart">
+        <summary>
+          <span class="where">WeSchool coursework, 2026. Fund-raising &amp; market risk</span>
+          <h3>DMart: how should it fund ₹1,000 crore of new stores?</h3>
+          <span class="verdict yes">Raise it through AAA-rated NCDs, 7.25–7.60% fixed, in 3- and 5-year tranches</span>
+          <span class="toggle"><span class="o">Open case</span><span class="c">Close case</span></span>
+          <span class="figs">
+            <span class="fig"><b>−₹647 cr</b><span>free cash flow, FY26, after −₹960 cr in FY25</span></span>
+            <span class="fig"><b>0.14x</b><span>gearing after the bond, against a 0.20x downgrade trigger</span></span>
+            <span class="fig"><b>4.30</b><span>NCD weighted score, highest of four routes</span></span>
+          </span>
+        
+          <span class="files"><button type="button" class="fbtn x" data-file="dmx">Open Excel: ratios & funding matrix</button><button type="button" class="fbtn w" data-file="dmc">Open Word: funding routes</button><button type="button" class="fbtn w" data-file="dmd">Open Word: market & rating risk</button><button type="button" class="fbtn w" data-file="dmn">Open Word: short note</button></span>
+        </summary>
+        <div class="case-body">
+          <div class="case-grid">
+            <div>
+              <h4>The question</h4>
+              <p>DMart buys the land and builds every store, so growth is capital-hungry. In FY26 operating cash of ₹3,467 cr fell short of ₹4,113 cr capex, the second deficit in a row. I compared four ways to raise about ₹1,000 cr and assessed how lenders and CRISIL would read the result.</p>
+              <h4>Why not the cheapest option</h4>
+              <p>Commercial paper was cheapest at 6.40–7.18%, but it lasts 90 days. DMart's own filings show it repaid ₹300 cr on 7 September 2026 and reissued ₹300 cr the next day. Funding a 20-year store that way means repeating that rollover about 80 times. Equity (a QIP) would cost roughly twice the bond for a 0.42% dilution, with the share price near its 52-week low.</p>
+              <h4>Where the risk actually sits</h4>
+              <p>Not in the balance sheet. EBITDA margin slipped from 8.08% to 7.54%, like-for-like growth halved to 8.1%, revenue per sq ft fell for the first time, and DMart Ready lost ₹307 cr in FY26 while retreating from 24 cities to 11.</p>
+              <h4>Conditions I attached</h4>
+              <ul>
+                <li>Size the issue to the actual funding gap, not the available capacity.</li>
+                <li>Stagger tranches so the coupon isn't set at one point on the curve.</li>
+                <li>Use part of the proceeds to retire the ₹380 cr overdraft and end the CP rollover.</li>
+                <li>Hold gearing below 0.15x, keeping a buffer under CRISIL's 0.20x trigger.</li>
+              </ul>
+            </div>
+            <div>
+              <figure class="chart" id="chartDM"><figcaption>Gearing (total debt incl. leases / net worth) against CRISIL's published downgrade trigger. The bond leaves about ₹1,467 cr of headroom.</figcaption></figure>
+              
+              <div class="note">
+                <h4>The investment banker's role</h4>
+                <p>Plain senior unsecured NCD, listed on BSE, privately placed. Priced off the G-Sec curve (~6.96%) at 40–70 bp over. Insurers and pension funds anchor the 5-year tranche; mutual fund corporate-bond schemes take the 3-year. Existing equity holders' debt desks are warm introductions.</p>
+              </div>
+            </div>
+          </div>
+          <div class="widget" id="wDM"></div>
+          <p class="deliv" style="margin-top:20px">Deliverables: five-sheet Excel (snapshot, ratio analysis, weighted funding matrix, risk dashboard, recommendation), funding-route comparison, market and rating risk assessment, and a short note.</p>
+        </div>
+      </details>
+      <!-- PE -->
+      <details class="case" id="pe">
+        <summary>
+          <span class="where">WeSchool live project. Business analysis</span>
+          <h3>Private equity in India: how would a new fund break in?</h3>
+          <span class="verdict">Enter as a Tier-2 healthcare roll-up platform, not a blind-pool fund</span>
+          <span class="toggle"><span class="o">Open case</span><span class="c">Close case</span></span>
+          <span class="figs">
+            <span class="fig"><b>10</b><span>global and domestic firms benchmarked</span></span>
+            <span class="fig"><b>4 of 5</b><span>Porter's forces rated high</span></span>
+            <span class="fig"><b>2</b><span>target corridors, West and South</span></span>
+          </span>
+        
+          <span class="files"><button type="button" class="fbtn p" data-file="pe">Open presentation</button></span>
+        </summary>
+        <div class="case-body">
+          <div class="case-grid">
+            <div>
+              <h4>Research</h4>
+              <ul>
+                <li>Mapped India AUM and share for Blackstone, KKR, Carlyle, TPG and Apollo against ChrysCapital, Kedaara, Everstone, True North and Multiples.</li>
+                <li>Traced regulation from SEBI's 1996 VCF rules through the 2012 AIF regulations, pass-through tax status and the 2024 valuation circular, alongside Dodd-Frank, AIFMD and ERISA.</li>
+                <li>Built strategy canvases on capital size, sector expertise, operating support, governance and networks, cross-checked with a primary interview: team quality was ranked above track record.</li>
+                <li>Porter's five forces: rivalry, buyer (LP) power, supplier (promoter) power and substitutes all high; new entrants low to moderate.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>The entry strategy</h4>
+              <p>A first-time manager can't raise a blind pool without a track record, and large funds crowd Tier-1 auctions. So: acquire a profitable Tier-2 anchor hospital or diagnostics chain in the Maharashtra–Gujarat or Karnataka–Tamil Nadu corridor, roll up smaller clinics and labs, centralise procurement and billing, and fund deal by deal through SPVs with co-investment rights.</p>
+              <p>LPs back visible assets and live cash flows rather than a pitch. Acquire, integrate, show results, raise, repeat.</p>
+            </div>
+          </div>
+          <div class="widget" id="wPE"></div>
+        </div>
+      </details>
+      <!-- DABUR HUL -->
+      <details class="case" id="dabur">
+        <summary>
+          <span class="where">WeSchool coursework. Group project</span>
+          <h3>Dabur vs HUL: financial statement analysis, FY24–FY25</h3>
+          <span class="verdict">HUL converts more of every sale into profit and turns stock twice as fast</span>
+          <span class="toggle"><span class="o">Open case</span><span class="c">Close case</span></span>
+          <span class="figs">
+            <span class="fig"><b>24.6% vs 19.3%</b><span>operating margin, HUL vs Dabur, FY25</span></span>
+            <span class="fig"><b>7.25x vs 3.08x</b><span>inventory turnover</span></span>
+          </span>
+        
+          <span class="files"><button type="button" class="fbtn p" data-file="dh">Open presentation</button></span>
+        </summary>
+        <div class="case-body">
+          <div class="case-grid">
+            <div>
+              <p>Calculated gross, operating and net margins, ROCE, current and quick ratios, inventory turnover and EPS from each company's consolidated statements, with the full working shown for every ratio.</p>
+              <p>Dabur's margins and ROCE slipped (ROCE 22.2% to 20.3%) as input costs and ad spending rose, though liquidity improved. HUL's returns strengthened while its liquidity tightened (current ratio 1.66 to 1.33).</p>
+            </div>
+            <div class="widget inline" id="wDH"></div>
+          </div>
+        </div>
+      </details>
+      <!-- SIRP -->
+      <details class="case" id="sirp">
+        <summary>
+          <span class="where">WeSchool summer internship research project (SIRP), May–June 2026</span>
+          <h3>The psychology behind stock market bubbles</h3>
+          <span class="verdict">Proposed behavioural safeguards to encourage long-term investing</span>
+          <span class="toggle"><span class="o">Open case</span><span class="c">Close case</span></span>
+          <span class="figs">
+            <span class="fig"><b>20+</b><span>research papers, books and SEBI reports</span></span>
+            <span class="fig"><b>5×</b><span>growth in Demat accounts</span></span>
+            <span class="fig"><b>91%</b><span>of F&amp;O traders made losses</span></span>
+          </span>
+        </summary>
+        <div class="case-body">
+          <p style="margin-top:22px">Studied how overconfidence, herd behaviour, FOMO and loss aversion inflate market bubbles, then applied the framework to recent Indian retail participation, using SEBI's finding that nine in ten individual F&amp;O traders lost money, to propose safeguards that nudge investors toward long-term behaviour.</p>
+        </div>
+      </details>
+
+      <div class="award" id="award">
+        <h3>2nd runner-up, La Conquista 2025: FINnovate</h3>
+        <p>Finlatics × SDA Bocconi Asia Center, with teammate Vansh Singh Thakur. We compared a fixed-cost AI interview platform (₹17 lakh for 2,000 slots) with a pay-per-use one across 400, 800 and 1,200-user scenarios, found the fixed plan only breaks even above about 1,667 users, and recommended the pay-per-use platform for a projected annual saving of ₹80.8 lakh, with a WhatsApp and email nudge plan to lift activation.</p>
+        <p class="award-files"><button type="button" class="fbtn p" data-file="fr">Open presentation</button></p>
+      </div>
+      <div class="widget" id="wAW"></div>
+    </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Looking for finance roles from 2027.</h2>
+      <p style="max-width:52ch;color:var(--muted);margin-bottom:24px">Credit, capital markets, equity research, wealth and consulting. Happy to walk through any case above in detail.</p>
+      <div class="contact-list">
+        <a href="mailto:BD2025-nishtha.dalal@welingkar.org">BD2025-nishtha.dalal@welingkar.org</a>
+        <a href="https://linkedin.com/in/nishtha-dalal" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="tel:+917240383424">+91 72403 83424</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">Nishtha Dalal, Mumbai. Figures are from each project's source workbooks and reports.</div></footer>
+
+<div class="modal" id="cvModal" hidden role="dialog" aria-modal="true" aria-labelledby="cvTitle">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="cvTitle">Curriculum vitae</h2>
+      <div class="modal-actions">
+        <a class="btn" href="documents/Nishtha_Dalal_CV.pdf" download="Nishtha_Dalal_CV.pdf">Download PDF</a>
+        <button type="button" class="btn" id="cvClose" aria-label="Close CV">Close</button>
+      </div>
+    </div>
+    <div class="modal-body"><img src="images/cv-preview.jpg" alt="Nishtha Dalal's one-page CV" width="1105" height="1430" loading="lazy"></div>
+  </div>
+</div>
+<div class="modal fmodal" id="fileModal" hidden role="dialog" aria-modal="true" aria-labelledby="fvTitle">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div><h2 id="fvTitle">File</h2><span class="fv-kind" id="fvKind"></span></div>
+      <div class="modal-actions">
+        <a class="btn primary" id="fvDl" href="#" download hidden>Download</a>
+        <button type="button" class="btn" id="fvClose" aria-label="Close file">Close</button>
+      </div>
+    </div>
+    <div class="fv-tabs" id="fvTabs" role="tablist" hidden></div>
+    <div class="fv-body" id="fvBody"></div>
+    <p class="fv-note" id="fvNote"></p>
+  </div>
+</div>
+<div class="tip" id="tip" role="tooltip" hidden></div>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  // theme
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  function cur(){var t=root.getAttribute('data-theme'); if(t) return t; return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+  function label(){btn.textContent=cur()==='dark'?'Light':'Dark';}
+  try{var saved=localStorage.getItem('nd-theme'); if(saved) root.setAttribute('data-theme',saved);}catch(e){}
+  label();
+  btn.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('nd-theme',n);}catch(e){}label();});
+
+  // register
+  var reg=[
+    ['ashok','Ashok Leyland','WeSchool project','Approve, unsecured','yes','Net cash of ₹5,856 cr, interest cover 33.8x, and still covered in a 30% volume stress.'],
+    ['dmart','DMart','WeSchool project','NCD over loan, CP or QIP','yes','Tenor matches a 20-year store; gearing 0.14x stays under the 0.20x trigger.'],
+    ['pe','Private equity','WeSchool live project','Platform, not a fund','','A Tier-2 healthcare roll-up sidesteps the track-record barrier.'],
+    ['dabur','Dabur vs HUL','WeSchool project','HUL ahead on efficiency','','Operating margin 24.6% vs 19.3%; inventory turns 7.25x vs 3.08x.'],
+    ['award','AI interview platforms','Case competition','Pay-per-use platform','yes','Cheaper in every scenario below 1,667 users; ₹80.8 lakh projected saving.']
+  ];
+  var box=document.getElementById('regRows');
+  reg.forEach(function(r,i){
+    var b=document.createElement('button');
+    b.type='button';b.className='reg-row';b.style.setProperty('--i',i);
+    b.innerHTML='<span class="subj">'+r[1]+'<small>'+r[2]+'</small></span><span class="call '+r[4]+'">'+r[3]+'</span><span class="why">'+r[5]+'</span><span class="go" aria-hidden="true">+</span>';
+    b.setAttribute('aria-label',r[1]+': '+r[3]+'. Open case');
+    b.addEventListener('click',function(){openCase(r[0]);});
+    box.appendChild(b);
+  });
+  var regEl=document.getElementById('register');
+  if('IntersectionObserver' in window){var ro=new IntersectionObserver(function(es){if(es[0].isIntersecting){regEl.classList.add('loaded');ro.disconnect();}},{threshold:.15});ro.observe(regEl);}else regEl.classList.add('loaded');
+
+  function openCase(id){
+    var el=document.getElementById(id); if(!el) return;
+    if(el.tagName==='DETAILS'){
+      // make sure it is visible under current filter
+      el.open=true;
+    }
+    el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    var s=el.querySelector('summary'); if(s) s.focus({preventScroll:true});
+  }
+  document.querySelectorAll('[data-open]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openCase(a.getAttribute('data-open'));});});
+  if(location.hash){var h=location.hash.slice(1); if(document.getElementById(h) && document.getElementById(h).tagName==='DETAILS') setTimeout(function(){openCase(h)},50);}
+
+  // nav highlight
+  var navLinks=[].slice.call(document.querySelectorAll('nav.links a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){navLinks.forEach(function(a){a.setAttribute('aria-current',a.getAttribute('href')==='#'+(e.target.id==='gst'?'internship':(e.target.id==='about-me'?'about':e.target.id))?'true':'false');});}});},{rootMargin:'-40% 0px -55% 0px'});
+    ['about','about-me','education','internship','gst','projects','contact'].forEach(function(id){io.observe(document.getElementById(id));});
+  }
+
+  // charts
+  var NS='http://www.w3.org/2000/svg';
+  function svg(w,h,label){var s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 '+w+' '+h);s.setAttribute('role','img');s.setAttribute('aria-label',label);return s;}
+  function el(tag,attrs,txt){var e=document.createElementNS(NS,tag),st='';for(var k in attrs){var v=attrs[k];if((k==='fill'||k==='stroke')&&String(v).indexOf('var(')===0)st+=k+':'+v+';';else e.setAttribute(k,v);}if(st)e.setAttribute('style',st);if(txt!=null)e.textContent=txt;return e;}
+  function put(fig,s){fig.insertBefore(s,fig.firstChild);}
+
+  // Ashok Leyland: debt vs net cash
+  (function(){
+    var fig=document.getElementById('chartAL'),W=420,H=220,s=svg(W,H,'Total debt fell from 2,299 to 1,195 crore while net cash rose from minus 108 to 5,856 crore between FY24 and FY26');
+    var yrs=['FY24','FY25','FY26'],debt=[2299,1482,1195],cash=[-108,4197,5856],max=6000,base=180,top=24,sc=(base-top)/max;
+    s.appendChild(el('line',{x1:40,x2:W-10,y1:base,y2:base,stroke:'currentColor','stroke-opacity':.25}));
+    yrs.forEach(function(y,i){
+      var x=60+i*120;
+      var dh=debt[i]*sc, ch=Math.max(cash[i],0)*sc;
+      s.appendChild(el('rect',{x:x,y:base-dh,width:38,height:dh,fill:'var(--chart-b)',rx:3}));
+      s.appendChild(el('rect',{x:x+42,y:base-ch,width:38,height:Math.max(ch,1.5),fill:'var(--chart-a)',rx:3}));
+      s.appendChild(el('text',{x:x+19,y:base-dh-6,'text-anchor':'middle'},debt[i].toLocaleString('en-IN')));
+      s.appendChild(el('text',{x:x+61,y:base-ch-6,'text-anchor':'middle','class':'lbl'},cash[i]<0?'('+Math.abs(cash[i])+')':cash[i].toLocaleString('en-IN')));
+      s.appendChild(el('text',{x:x+40,y:base+18,'text-anchor':'middle','class':'lbl'},y));
+    });
+    s.appendChild(el('rect',{x:40,y:H-16,width:10,height:10,fill:'var(--chart-b)',rx:2}));
+    s.appendChild(el('text',{x:56,y:H-7},'Total debt'));
+    s.appendChild(el('rect',{x:140,y:H-16,width:10,height:10,fill:'var(--chart-a)',rx:2}));
+    s.appendChild(el('text',{x:156,y:H-7},'Net cash (FY24: small net debt)'));
+    put(fig,s);
+  })();
+
+  // DMart gearing ladder
+  (function(){
+    var fig=document.getElementById('chartDM'),W=420,H=210,s=svg(W,H,'Gearing rose from 0.03 in FY24 to 0.10 in FY26 and about 0.14 after the bond, against a 0.20 downgrade trigger');
+    var d=[['FY24',.03],['FY25',.04],['FY26',.10],['After bond',.14]],base=170,top=20,max=.22,sc=(base-top)/max;
+    var ty=base-.20*sc;
+    d.forEach(function(p,i){
+      var x=40+i*92,h=p[1]*sc,last=i===3;
+      s.appendChild(el('rect',{x:x,y:base-h,width:56,height:h,fill:last?'none':'var(--chart-a)',stroke:'var(--chart-a)','stroke-width':last?2:0,'stroke-dasharray':last?'5 4':'',rx:3}));
+      s.appendChild(el('text',{x:x+28,y:base-h-6,'text-anchor':'middle','class':'lbl'},p[1].toFixed(2)+'x'));
+      s.appendChild(el('text',{x:x+28,y:base+18,'text-anchor':'middle'},p[0]));
+    });
+    s.appendChild(el('line',{x1:30,x2:W-8,y1:ty,y2:ty,stroke:'var(--no)','stroke-width':2,'stroke-dasharray':'2 4'}));
+    s.appendChild(el('text',{x:W-8,y:ty-6,'text-anchor':'end',fill:'var(--no)',style:'fill:var(--no);font-weight:600'},'CRISIL trigger 0.20x'));
+    s.appendChild(el('line',{x1:30,x2:W-8,y1:base,y2:base,stroke:'currentColor','stroke-opacity':.25}));
+    put(fig,s);
+  })();
+
+  // FMCG allocation
+  (function(){
+    var fig=document.getElementById('chartFM'),W=420,H=200,s=svg(W,H,'Allocation: ITC 35 percent, Colgate 25, HUL 17.5, Britannia 12.5, United Spirits 10');
+    var d=[['ITC','Rank 1',35],['Colgate-Palmolive','Rank 2',25],['Hindustan Unilever','Rank 3',17.5],['Britannia','Rank 5',12.5],['United Spirits','Rank 4',10]];
+    d.forEach(function(p,i){
+      var y=14+i*36,w=p[2]/35*210;
+      s.appendChild(el('text',{x:0,y:y+14,'class':'lbl'},p[0]));
+      s.appendChild(el('text',{x:0,y:y+28},p[1]));
+      s.appendChild(el('rect',{x:150,y:y+4,width:w,height:20,fill:'var(--chart-a)',rx:3}));
+      s.appendChild(el('text',{x:156+w,y:y+19,'class':'lbl'},p[2]+'%'));
+    });
+    put(fig,s);
+  })();
+
+  // NN50 capital path, log scale
+  (function(){
+    var fig=document.getElementById('chartNN'),W=420,H=230,s=svg(W,H,'Capital grows from 1 lakh in 1999 to 8.53 crore by March 2026 across five cycles');
+    var pts=[[1999.0,1e5],[2000.0,280282],[2001.72,321567],[2007.79,3125099],[2008.81,3392777],[2010.75,10618915],[2013.64,12861996],[2018.65,38281669],[2020.22,42325269],[2020.6,61837073],[2026.24,85326825]];
+    var bh=[[1999.0,1e5],[2026.24,3944174]];
+    var x0=40,x1=W-14,y0=190,y1=16,lmin=5,lmax=8.1;
+    function X(t){return x0+(t-1999)/(2026.3-1999)*(x1-x0);}
+    function Y(v){return y0-(Math.log10(v)-lmin)/(lmax-lmin)*(y0-y1);}
+    [[1e5,'₹1L'],[1e6,'₹10L'],[1e7,'₹1Cr'],[1e8,'₹10Cr']].forEach(function(g){
+      s.appendChild(el('line',{x1:x0,x2:x1,y1:Y(g[0]),y2:Y(g[0]),stroke:'currentColor','stroke-opacity':.12}));
+      s.appendChild(el('text',{x:x0-6,y:Y(g[0])+4,'text-anchor':'end'},g[1]));
+    });
+    [2000,2008,2016,2024].forEach(function(t){s.appendChild(el('text',{x:X(t),y:y0+18,'text-anchor':'middle'},t));});
+    s.appendChild(el('path',{d:'M'+X(bh[0][0])+' '+Y(bh[0][1])+' L'+X(bh[1][0])+' '+Y(bh[1][1]),stroke:'var(--chart-b)','stroke-width':2,fill:'none','stroke-dasharray':'5 4'}));
+    s.appendChild(el('path',{d:pts.map(function(p,i){return (i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1);}).join(' '),stroke:'var(--chart-a)','stroke-width':2.5,fill:'none','stroke-linejoin':'round'}));
+    s.appendChild(el('text',{x:x1,y:Y(85326825)-8,'text-anchor':'end','class':'lbl'},'₹8.53 Cr, P/E timing'));
+    s.appendChild(el('text',{x:x1,y:Y(3944174)+16,'text-anchor':'end'},'₹39.4 L, buy and hold'));
+    put(fig,s);
+  })();
+
+  // ===== shared helpers =====
+  function S(tag,attrs,txt){var e=document.createElementNS(NS,tag),st='';for(var k in attrs){var v=attrs[k];if((k==='fill'||k==='stroke')&&String(v).indexOf('var(')===0){st+=k+':'+v+';';}else e.setAttribute(k,v);}if(st)e.setAttribute('style',(e.getAttribute('style')||'')+st);if(txt!=null)e.textContent=txt;return e;}
+  function H(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+  function inr(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
+  function cr(n){if(n>=1e7)return '₹'+(n/1e7).toFixed(2)+' Cr';if(n>=1e5)return '₹'+(n/1e5).toFixed(1)+' L';return inr(n);}
+  var tip=document.getElementById('tip');
+  function showTip(html,x,y){tip.innerHTML=html;tip.hidden=false;var r=tip.getBoundingClientRect(),vw=document.documentElement.clientWidth;var L=Math.min(x+14,vw-r.width-8),T=y-r.height-12;if(T<8)T=y+18;tip.style.left=Math.max(8,L)+'px';tip.style.top=T+'px';}
+  function hideTip(){tip.hidden=true;}
+  document.addEventListener('pointerover',function(e){var t=e.target.closest&&e.target.closest('[data-tip]');if(t)showTip(t.getAttribute('data-tip'),e.clientX,e.clientY);});
+  document.addEventListener('pointermove',function(e){var t=e.target.closest&&e.target.closest('[data-tip]');if(t)showTip(t.getAttribute('data-tip'),e.clientX,e.clientY);});
+  document.addEventListener('pointerout',function(e){var t=e.target.closest&&e.target.closest('[data-tip]');if(t)hideTip();});
+  window.addEventListener('scroll',hideTip,{passive:true});
+  function seg(opts,onPick,start){var g=H('div','seg');g.setAttribute('role','group');opts.forEach(function(o,i){var b=H('button',null,o);b.type='button';b.setAttribute('aria-pressed',i===(start||0)?'true':'false');b.addEventListener('click',function(){[].forEach.call(g.children,function(c){c.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');onPick(i);});g.appendChild(b);});return g;}
+
+  // ===== Ashok Leyland stress test =====
+  (function(){
+    var box=document.getElementById('wAL');if(!box)return;
+    var REV=44007,INT=91.29,DEBT=1195;
+    box.innerHTML='<h4>Try the stress test</h4><p class="wnote">Move the sliders to shrink volumes and margins. Debt and interest stay at FY26 levels; revenue falls with volume.</p>'+
+      '<div class="sliders"><label>Fall in volumes <output id="alV">30%</output><input type="range" id="alVol" min="0" max="50" step="5" value="30"></label>'+
+      '<label>EBITDA margin <output id="alM">8.0%</output><input type="range" id="alMar" min="5" max="14" step="0.5" value="8"></label></div>'+
+      '<div class="kpis"><div><span>EBITDA</span><b id="alE"></b></div><div><span>EBITDA / interest on borrowings</span><b id="alC"></b><i class="meter"><i id="alCm"></i></i></div><div><span>Debt / EBITDA</span><b id="alD"></b><i class="meter"><i id="alDm"></i></i></div></div>'+
+      '<p class="wverdict" id="alVerdict"></p><button type="button" class="linkbtn" id="alReset">Reset to FY26 actuals</button>';
+    var v=box.querySelector('#alVol'),m=box.querySelector('#alMar');
+    function upd(){var vol=+v.value,mar=+m.value,e=REV*(1-vol/100)*mar/100,c=e/INT,d=DEBT/e;
+      box.querySelector('#alV').textContent=vol+'%';box.querySelector('#alM').textContent=mar.toFixed(1)+'%';
+      box.querySelector('#alE').textContent='₹'+Math.round(e).toLocaleString('en-IN')+' cr';
+      box.querySelector('#alC').textContent=c.toFixed(1)+'x';box.querySelector('#alD').textContent=d.toFixed(2)+'x';
+      box.querySelector('#alCm').style.width=Math.min(100,c/70*100)+'%';box.querySelector('#alDm').style.width=Math.min(100,d/1.5*100)+'%';
+      var vd=box.querySelector('#alVerdict');
+      if(c>=10&&d<=1.5){vd.textContent='Still comfortably serviceable: even gross debt stays inside the 1.5x leverage covenant.';vd.className='wverdict yes';}
+      else if(c>=3){vd.textContent='Coverage holds, but gross leverage is past 1.5x: time to test the covenant on a net basis and tighten terms.';vd.className='wverdict';}
+      else{vd.textContent='Coverage below 3x: this would trigger a secured, shorter-tenor structure.';vd.className='wverdict no';}}
+    v.addEventListener('input',upd);m.addEventListener('input',upd);
+    box.querySelector('#alReset').addEventListener('click',function(){v.value=0;m.value=13;upd();});
+    upd();
+  })();
+
+  // ===== DMart weighted matrix =====
+  (function(){
+    var box=document.getElementById('wDM');if(!box)return;
+    var crit=[['Cost of capital',20],['Tenor match',20],['Rating impact',20],['Dilution',10],['Speed',10],['Control & covenants',10],['Market perception',10]];
+    var routes=[['NCD (bond)','7.25–7.60% fixed',[4,5,4,5,3,4,5]],['Bank term loan','7.75–8.50% floating',[3,5,4,5,4,2,3]],['Commercial paper','6.40–7.18%, 90 days',[5,1,1,5,5,5,2]],['QIP (equity)','11–12% + fees',[1,5,5,2,2,2,1]]];
+    box.innerHTML='<h4>Re-weight the funding decision</h4><p class="wnote">My model scored each route 1 to 5 on seven criteria. Change how much each criterion matters and watch the ranking move.</p><div class="wgrid"><div class="sliders" id="dmS"></div><div id="dmBars"></div></div><button type="button" class="linkbtn" id="dmReset">Reset to my weights</button>';
+    var sl=box.querySelector('#dmS'),bars=box.querySelector('#dmBars');
+    crit.forEach(function(c,i){var l=H('label');l.innerHTML=c[0]+' <output>'+c[1]+'</output><input type="range" min="0" max="40" step="5" value="'+c[1]+'" data-i="'+i+'">';sl.appendChild(l);});
+    function upd(){var ins=sl.querySelectorAll('input'),w=[],tot=0;ins.forEach(function(x){var n=+x.value;w.push(n);tot+=n;x.previousElementSibling.textContent=tot?'':'';});
+      ins.forEach(function(x,i){x.previousElementSibling.textContent=tot?Math.round(w[i]/tot*100)+'%':'0%';});
+      var sc=routes.map(function(r){var s=0;r[2].forEach(function(v,i){s+=v*(tot?w[i]/tot:0);});return {n:r[0],c:r[1],s:s};});
+      var best=Math.max.apply(null,sc.map(function(x){return x.s;}));
+      var sorted=sc.slice().sort(function(a,b){return b.s-a.s;});
+      bars.innerHTML=sorted.map(function(x,k){return '<div class="hb'+(x.s===best?' top':'')+'"><div class="hb-l"><b>'+(k+1)+'. '+x.n+'</b><span>'+x.c+'</span></div><div class="hb-t"><i style="width:'+(x.s/5*100)+'%"></i></div><div class="hb-v">'+x.s.toFixed(2)+'</div></div>';}).join('');}
+    sl.addEventListener('input',upd);
+    box.querySelector('#dmReset').addEventListener('click',function(){sl.querySelectorAll('input').forEach(function(x,i){x.value=crit[i][1];});upd();});
+    upd();
+  })();
+
+  // ===== FMCG NAV vs index line =====
+  (function(){
+    var fig=document.getElementById('chartFL');if(!fig)return;
+    var d=[["21 May",10,1000],["22 May",9.9405,1003.74],["25 May",9.8917,1000.39],["26 May",9.8628,1003.31],["27 May",9.7624,998.45],["29 May",9.581,981.98],["1 Jun",9.3349,959.43],["2 Jun",9.4045,966.37],["3 Jun",9.332,958.66],["4 Jun",9.3398,958.45],["5 Jun",9.3773,962.19],["8 Jun",9.3446,960.87],["9 Jun",9.4112,966.9],["10 Jun",9.5371,978.4],["11 Jun",9.4518,968.65],["12 Jun",9.5877,976.21],["15 Jun",9.6486,980.05],["16 Jun",9.3043,962.53],["17 Jun",9.6668,987.63],["18 Jun",9.7164,989.01],["19 Jun",9.6433,985.25],["22 Jun",9.6261,980.81],["23 Jun",9.5915,974.81],["24 Jun",9.598,974.46],["25 Jun",9.6535,982.21]];
+    var W=440,Hh=230,x0=38,x1=W-10,y0=190,y1=14,lo=92,hi=101;
+    var s=S('svg',{viewBox:'0 0 '+W+' '+Hh,role:'img','aria-label':'Fund NAV and FMCG index, both rebased to 100, from 21 May to 25 June 2026'});
+    function X(i){return x0+i/(d.length-1)*(x1-x0);}function Y(v){return y0-(v-lo)/(hi-lo)*(y0-y1);}
+    [92,94,96,98,100].forEach(function(g){s.appendChild(S('line',{x1:x0,x2:x1,y1:Y(g),y2:Y(g),stroke:'currentColor','stroke-opacity':g===100?.35:.1}));s.appendChild(S('text',{x:x0-6,y:Y(g)+4,'text-anchor':'end'},g));});
+    [0,6,12,18,24].forEach(function(i){s.appendChild(S('text',{x:X(i),y:y0+18,'text-anchor':i===24?'end':(i===0?'start':'middle')},d[i][0]));});
+    var pI=d.map(function(r,i){return (i?'L':'M')+X(i).toFixed(1)+' '+Y(r[2]/10).toFixed(1);}).join(' ');
+    var pN=d.map(function(r,i){return (i?'L':'M')+X(i).toFixed(1)+' '+Y(r[1]*10).toFixed(1);}).join(' ');
+    s.appendChild(S('path',{d:pI,fill:'none',stroke:'var(--chart-b)','stroke-width':2.2}));
+    s.appendChild(S('path',{d:pN,fill:'none',stroke:'var(--chart-a)','stroke-width':2.6}));
+    var cross=S('line',{y1:y1,y2:y0,stroke:'currentColor','stroke-opacity':.35,visibility:'hidden'});s.appendChild(cross);
+    var dN=S('circle',{r:4,fill:'var(--chart-a)',visibility:'hidden'}),dI=S('circle',{r:4,fill:'var(--chart-b)',visibility:'hidden'});s.appendChild(dN);s.appendChild(dI);
+    var hit=S('rect',{x:x0,y:y1,width:x1-x0,height:y0-y1,fill:'transparent'});hit.style.cursor='crosshair';s.appendChild(hit);
+    function at(ev){var r=s.getBoundingClientRect(),px=(ev.clientX-r.left)/r.width*W,i=Math.round((px-x0)/(x1-x0)*(d.length-1));i=Math.max(0,Math.min(d.length-1,i));var row=d[i];
+      cross.setAttribute('x1',X(i));cross.setAttribute('x2',X(i));cross.setAttribute('visibility','visible');
+      dN.setAttribute('cx',X(i));dN.setAttribute('cy',Y(row[1]*10));dN.setAttribute('visibility','visible');dI.setAttribute('cx',X(i));dI.setAttribute('cy',Y(row[2]/10));dI.setAttribute('visibility','visible');
+      showTip('<b>'+row[0]+' 2026</b><br>Fund NAV ₹'+row[1].toFixed(2)+'<br>Index '+row[2].toFixed(1),ev.clientX,ev.clientY);}
+    hit.addEventListener('pointermove',at);hit.addEventListener('pointerdown',at);
+    hit.addEventListener('pointerleave',function(){cross.setAttribute('visibility','hidden');dN.setAttribute('visibility','hidden');dI.setAttribute('visibility','hidden');hideTip();});
+    s.appendChild(S('rect',{x:x0+4,y:y1+2,width:10,height:3,fill:'var(--chart-a)'}));s.appendChild(S('text',{x:x0+18,y:y1+7,'class':'lbl'},'My fund'));
+    s.appendChild(S('rect',{x:x0+80,y:y1+2,width:10,height:3,fill:'var(--chart-b)'}));s.appendChild(S('text',{x:x0+94,y:y1+7},'My FMCG index'));
+    fig.insertBefore(s,fig.firstChild);
+  })();
+
+  // ===== Nifty 500 rejection reasons =====
+  (function(){
+    var fig=document.getElementById('chartN5');if(!fig)return;
+    var d=[['FCF / sales below 10%',177],['Low ROE',167],['Debt / equity above 0.5',132],['Weak interest cover',118],['PEG above 1.25',113],['High P/E',110],['High P/BV',25],['Thin margins',13]];
+    var W=420,Hh=d.length*30+46,s=S('svg',{viewBox:'0 0 '+W+' '+Hh,role:'img','aria-label':'Reasons cited for rejecting Nifty 500 companies'});
+    s.appendChild(S('text',{x:0,y:14,'class':'lbl'},'504 screened'));s.appendChild(S('text',{x:120,y:14},'→ 479 rejected → 4 selected'));
+    d.forEach(function(r,i){var y=34+i*30,w=r[1]/177*200;s.appendChild(S('text',{x:0,y:y+14},r[0]));var b=S('rect',{x:170,y:y+2,width:w,height:18,rx:3,fill:'var(--chart-a)','fill-opacity':1-i*0.08});b.setAttribute('data-tip','<b>'+r[0]+'</b><br>cited in '+r[1]+' of 479 rejections');s.appendChild(b);s.appendChild(S('text',{x:176+w,y:y+15,'class':'lbl'},r[1]));});
+    fig.insertBefore(s,fig.firstChild);
+  })();
+
+  // ===== Banks scatter =====
+  (function(){
+    var box=document.getElementById('wBK');if(!box)return;
+    var P=[['HDFC Bank',3.32,1.15,1.54,12.97,19.71,1],['ICICI Bank',3.64,1.4,1.85,14.93,17.18,1],['Axis Bank',3,1.23,1.35,12.27,16.42,1],['Kotak Mahindra',4,1.2,1.92,10.64,22.4,1],['IDBI Bank',2.89,2.32,1.97,13.43,26.65,0],['IndusInd Bank',3.3,3.43,0.16,1.35,17.48,0],['Federal Bank',2.96,1.62,1.08,10.58,17.25,1],['Yes Bank',2.07,1.3,0.74,6.86,15.3,0],['IDFC First Bank',5.3,1.61,0.4,3.39,15.6,0],['Bandhan Bank',5.12,3.27,0.57,4.78,18.04,0],['Karur Vysya Bank',3.61,0.75,1.83,17.79,18.76,1],['RBL Bank',3.51,1.45,0.48,5.25,14.25,0],['City Union Bank',2.91,1.91,1.36,12.55,21.92,1],['J&K Bank',3.11,2.5,1.24,14.3,16.55,1],['Tamilnad Mercantile',3.35,0.73,1.77,13.22,33.73,1],['South Indian Bank',2.42,1.43,1.02,12.75,19.66,1],['Karnataka Bank',2.41,2.78,1.01,9.91,20.07,0],['CSB Bank',2.98,1.66,1.09,12.93,20.66,1],['DCB Bank',2.78,2.45,0.83,11.19,16.55,0],['Dhanlaxmi Bank',2.93,1.89,0.48,6.97,18.92,0]];
+    var Q=[['State Bank of India',2.4,1.49,1,13.97,15.4,1],['Bank of Baroda',2.49,1.89,0.94,11.96,15.82,1],['Punjab National Bank',2.1,2.95,0.9,12.26,17.74,0],['Bank of India',2.15,1.98,0.87,11.45,18.01,0],['Union Bank of India',2.35,2.82,1.22,14.56,18.1,1],['Canara Bank',1.97,1.84,0.94,15.18,17.04,0],['Bank of Maharashtra',3.19,1.45,1.64,21.11,18.36,1],['Central Bank of India',2.58,2.67,0.82,11.59,17.91,0],['Indian Overseas Bank',2.65,1.42,1.14,14.64,19.78,1],['Indian Bank',2.71,1.98,1.18,14.62,17.93,1],['UCO Bank',2.65,2.17,0.68,8.86,18.61,0],['Punjab & Sind Bank',2.12,2.4,0.73,9.35,17.42,0]];
+    var set=0,met=0,METS=[['ROA %',3,2.4],['ROE %',4,24],['NIM %',1,6]];
+    box.innerHTML='<h4>Explore the screen</h4><p class="wnote">Each dot is a bank. Hover or tap for its ratios. Teal passed my screen, rose did not.</p><div class="wctrl"></div><figure class="chart"><div class="scat"></div><figcaption>Gross NPA on the horizontal axis: further left means cleaner loan books.</figcaption></figure>';
+    var ctrl=box.querySelector('.wctrl'),holder=box.querySelector('.scat');
+    ctrl.appendChild(seg(['Private (20)','Public sector (12)','All 32'],function(i){set=i;draw();}));
+    ctrl.appendChild(seg(['ROA','ROE','NIM'],function(i){met=i;draw();}));
+    function draw(){var data=set===0?P:set===1?Q:P.concat(Q),m=METS[met];var W=440,Hh=260,x0=44,x1=W-12,y0=222,y1=12,xmax=3.6,ymax=m[2];
+      var s=S('svg',{viewBox:'0 0 '+W+' '+Hh,role:'img','aria-label':'Banks plotted by gross NPA and '+m[0]});
+      function X(v){return x0+v/xmax*(x1-x0);}function Y(v){return y0-v/ymax*(y0-y1);}
+      for(var g=0;g<=4;g++){var gv=ymax/4*g;s.appendChild(S('line',{x1:x0,x2:x1,y1:Y(gv),y2:Y(gv),stroke:'currentColor','stroke-opacity':.1}));s.appendChild(S('text',{x:x0-6,y:Y(gv)+4,'text-anchor':'end'},gv%1?gv.toFixed(1):gv));}
+      [0,1,2,3].forEach(function(v){s.appendChild(S('text',{x:X(v),y:y0+18,'text-anchor':'middle'},v+'%'));});
+      s.appendChild(S('text',{x:x1,y:y0+34,'text-anchor':'end'},'Gross NPA →'));s.appendChild(S('text',{x:x0,y:y1-2+10,'class':'lbl'},m[0]));
+      data.forEach(function(b){var c=S('circle',{cx:X(b[2]),cy:Y(Math.min(b[m[1]],ymax)),r:7,fill:b[6]?'var(--yes)':'var(--no)','fill-opacity':.85,stroke:'var(--surface)','stroke-width':1.5});c.style.cursor='pointer';c.setAttribute('tabindex','0');
+        c.setAttribute('data-tip','<b>'+b[0]+'</b> '+(b[6]?'accepted':'rejected')+'<br>NIM '+b[1]+'% · GNPA '+b[2]+'%<br>ROA '+b[3]+'% · ROE '+b[4]+'% · CAR '+b[5]+'%');
+        c.setAttribute('aria-label',b[0]+', '+(b[6]?'accepted':'rejected'));s.appendChild(c);});
+      holder.innerHTML='';holder.appendChild(s);}
+    draw();
+  })();
+
+  // ===== FPWP personas =====
+  (function(){
+    var box=document.getElementById('wFP');if(!box)return;
+    var ps=[{n:'Nishtha',a:22,s:'₹8–12 LPA',r:'Medium',g:[['Postgraduate course',2,4e5,449440,'HDFC Liquid Fund','Debt: liquid',6.96,17508],['Home purchase',10,18e5,3223526,'HDFC Balanced Advantage','Hybrid: balanced advantage',15.05,11677],['Retirement corpus',38,18e6,164776542,'ABSL Retirement Fund, 30s Plan','Retirement fund',12.27,16448]]},
+      {n:'Kushagra',a:34,s:'₹18–25 LPA',r:'High',g:[['Home renovation',2,9e5,1011240,'ICICI Pru Liquid Fund','Debt: liquid',6.97,39388],['Home down payment',11,55e5,10440642,'ICICI Pru Large & Mid Cap','Equity: large & mid cap',17.62,26210],['Retirement corpus',26,32e6,145580255,'Axis Retirement Fund, Dynamic','Retirement fund',13.07,55899]]},
+      {n:'Priya',a:46,s:'₹25–40 LPA',r:'Medium',g:[['Child education fees',2,12e5,1348320,'Nippon India Liquid Fund','Debt: liquid',7.01,52497],['Child higher education',7,45e5,6766336,'SBI Balanced Advantage','Hybrid: balanced advantage',11.44,52922],['Retirement corpus',14,28e6,63305311,'SBI Retirement Benefit, Aggressive','Retirement fund',12.58,139238]]},
+      {n:'Anuj',a:52,s:'₹40–60 LPA',r:'Medium',g:[['Medical contingency',3,15e5,1786524,'ICICI Pru Ultra Short Term','Debt: ultra short',7.4,44473],['Retirement transition',8,1e7,15938481,'ICICI Pru Equity & Debt','Hybrid: aggressive',16.63,80374],['Retirement safety corpus',8,22e6,35064658,'Tata Retirement Savings, Moderate','Retirement fund',11.51,224174]]}];
+    box.innerHTML='<h4>Pick an investor</h4><div class="wctrl"></div><div class="fp-out"></div>';
+    var out=box.querySelector('.fp-out');
+    box.querySelector('.wctrl').appendChild(seg(ps.map(function(p){return p.n+', '+p.a;}),function(i){draw(i);}));
+    var cols=['var(--chart-b)','var(--chart-a)','var(--yes)'];
+    function draw(i){var p=ps[i],tot=p.g.reduce(function(a,g){return a+g[7];},0);
+      var html='<p class="fp-meta">Salary '+p.s+'. Risk profile: <b>'+p.r+'</b>. Monthly SIP needed: <b>'+inr(tot)+'</b></p><div class="sipbar" aria-hidden="true">'+p.g.map(function(g,k){return '<i style="width:'+(g[7]/tot*100)+'%;background:'+cols[k]+'" data-tip="<b>'+g[0]+'</b><br>'+inr(g[7])+' a month"></i>';}).join('')+'</div><div class="fp-goals">';
+      html+=p.g.map(function(g,k){return '<div class="fp-g"><span class="dot" style="background:'+cols[k]+'"></span><b>'+g[0]+'</b><span class="muted">'+g[1]+' yrs · '+cr(g[2])+' today → '+cr(g[3])+'</span><span>'+g[4]+'</span><span class="muted">'+g[5]+' · '+g[6]+'% assumed</span><strong>'+inr(g[7])+' / month</strong></div>';}).join('')+'</div>';
+      out.innerHTML=html;}
+    draw(0);
+  })();
+
+  // ===== PE five forces =====
+  (function(){
+    var box=document.getElementById('wPE');if(!box)return;
+    var f=[['Competitive rivalry',3,'High','Strategic buyers pay premiums and Tier-1 deals are crowded.','Build regional density in Tier-2/3 markets, away from Tier-1 auctions.'],['Buyer (LP) power',3,'High','LPs demand transparency and better risk-adjusted returns.','SPVs with co-investment rights give LPs visibility and control.'],['Supplier (promoter) power',3,'High','Promoters prefer debt or long-term partners to keep control.','An integration playbook lifts margins and shares the upside with founders.'],['Threat of substitutes',3,'High','IPOs, bank loans and strategic buyers are all available.','Deal-level capital allows bespoke terms a rigid fund cannot offer.'],['Threat of new entrants',1.5,'Low to moderate','SEBI registration and capital requirements act as barriers.','Being first to build density in a corridor becomes a moat.']];
+    box.innerHTML='<h4>Five forces, and my response to each</h4><p class="wnote">Select a force.</p><div class="forces"></div><div class="force-out" aria-live="polite"></div>';
+    var list=box.querySelector('.forces'),out=box.querySelector('.force-out');
+    f.forEach(function(x,i){var b=H('button','force');b.type='button';b.innerHTML='<span>'+x[0]+'</span><i class="fbar"><i style="width:'+(x[1]/3*100)+'%"></i></i><em>'+x[2]+'</em>';b.addEventListener('click',function(){pick(i);});list.appendChild(b);});
+    function pick(i){[].forEach.call(list.children,function(c,k){c.setAttribute('aria-pressed',k===i?'true':'false');});out.innerHTML='<div><span class="muted">The market</span><p>'+f[i][3]+'</p></div><div><span class="muted">My response</span><p>'+f[i][4]+'</p></div>';}
+    pick(0);
+  })();
+
+  // ===== Dabur vs HUL =====
+  (function(){
+    var box=document.getElementById('wDH');if(!box)return;
+    var sets=[[['Gross margin',47.98,57.90,'%'],['Operating margin',19.27,24.60,'%'],['Net margin',14.07,14.70,'%'],['ROCE',20.32,23.38,'%']],[['Inventory turnover',3.08,7.25,'x'],['Current ratio',1.51,1.33,''],['Quick ratio',0.98,1.07,'']]];
+    box.innerHTML='<h4>FY25 head to head</h4><div class="wctrl"></div><div class="dh"></div><p class="legend"><i style="background:var(--chart-b)"></i>Dabur <i style="background:var(--chart-a)"></i>HUL</p>';
+    var out=box.querySelector('.dh');
+    box.querySelector('.wctrl').appendChild(seg(['Profitability','Efficiency & liquidity'],function(i){draw(i);}));
+    function draw(i){var d=sets[i],mx=Math.max.apply(null,d.map(function(r){return Math.max(r[1],r[2]);}));
+      out.innerHTML=d.map(function(r){return '<div class="dh-row"><span>'+r[0]+'</span><div class="dh-b"><i style="width:'+(r[1]/mx*100)+'%;background:var(--chart-b)"></i><b>'+r[1]+r[3]+'</b></div><div class="dh-b"><i style="width:'+(r[2]/mx*100)+'%;background:var(--chart-a)"></i><b>'+r[2]+r[3]+'</b></div></div>';}).join('');}
+    draw(0);
+  })();
+
+  // ===== La Conquista scenarios =====
+  (function(){
+    var box=document.getElementById('wAW');if(!box)return;
+    var sc=[['Pessimistic',400,1700000,360000,4250,900],['Normal',800,1700000,1300000,2125,1625],['Optimistic',1200,1700000,1420000,1417,1183]];
+    box.innerHTML='<h4>Try the case: how many candidates show up?</h4><div class="wctrl"></div><div class="aw"></div><p class="wnote">Fixed plan: ₹17 lakh for 2,000 slots. The fixed plan only matches pay-per-use above about 1,667 users.</p>';
+    var out=box.querySelector('.aw');
+    box.querySelector('.wctrl').appendChild(seg(sc.map(function(s){return s[0]+' ('+s[1]+')';}),function(i){draw(i);},1));
+    function draw(i){var s=sc[i];out.innerHTML='<div class="aw-row"><span>Fixed-cost platform</span><div class="hb-t"><i style="width:'+(s[4]/4250*100)+'%;background:var(--no)"></i></div><b>'+inr(s[4])+' / user</b></div><div class="aw-row"><span>Pay-per-use platform</span><div class="hb-t"><i style="width:'+(s[5]/4250*100)+'%;background:var(--yes)"></i></div><b>'+inr(s[5])+' / user</b></div><p class="wverdict yes">Pay-per-use is '+inr(s[4]-s[5])+' cheaper per interview. Total cost '+cr(s[3])+' against '+cr(s[2])+'.</p>';}
+    draw(1);
+  })();
+
+  // ===== NN50 point tooltips =====
+  (function(){
+    var fig=document.getElementById('chartNN');if(!fig)return;var s=fig.querySelector('svg');if(!s)return;
+    var labels=['Buy, Jan 1999','Sell, Jan 2000','Buy, Sep 2001','Sell, Oct 2007','Buy, Oct 2008','Sell, Oct 2010','Buy, Aug 2013','Sell, Aug 2018','Buy, Mar 2020','Sell, Aug 2020','Value, Mar 2026'];
+    var vals=[1e5,280282,321567,3125099,3392777,10618915,12861996,38281669,42325269,61837073,85326825],yrs=[1999.0,2000.0,2001.72,2007.79,2008.81,2010.75,2013.64,2018.65,2020.22,2020.6,2026.24];
+    var x0=40,x1=420-14,y0=190,y1=16;function X(t){return x0+(t-1999)/(2026.3-1999)*(x1-x0);}function Y(v){return y0-(Math.log10(v)-5)/(8.1-5)*(y0-y1);}
+    vals.forEach(function(v,i){var c=S('circle',{cx:X(yrs[i]),cy:Y(v),r:5,fill:'var(--surface)',stroke:'var(--chart-a)','stroke-width':2});c.style.cursor='pointer';c.setAttribute('data-tip','<b>'+labels[i]+'</b><br>'+cr(v));s.appendChild(c);});
+  })();
+
+  // ===== reveal on scroll =====
+  if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var rv=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target);}});},{threshold:.15});
+    document.querySelectorAll('.chart,.widget').forEach(function(n){n.classList.add('reveal');rv.observe(n);});
+  }
+
+  // ===== CV viewer =====
+  (function(){
+    var modal=document.getElementById('cvModal'),closeB=document.getElementById('cvClose'),last=null;
+    function open(){last=document.activeElement;modal.hidden=false;document.body.style.overflow='hidden';closeB.focus();}
+    function close(){modal.hidden=true;document.body.style.overflow='';if(last)last.focus();}
+    document.querySelectorAll('[data-cv]').forEach(function(b){b.addEventListener('click',open);});
+    closeB.addEventListener('click',close);
+    modal.addEventListener('click',function(e){if(e.target===modal)close();});
+    document.addEventListener('keydown',function(e){if(!modal.hidden&&e.key==='Escape')close();});
+  })();
+
+
+  // ===== project file viewer =====
+  (function(){
+    var FILES={"fmcg":{"kind":"xlsx","title":"Nifty FMCG index and portfolio","file":"finoability_Internship_project-_nifty_FMCG_-_nishtha_dalal.xlsx","data":"data/finoability_Internship_project-_nifty_FMCG_-_nishtha_dalal.js","key":"fmcg"},"nn50":{"kind":"xlsx","title":"Nifty Next 50 P/E backtest","file":"NiftyNext50_PE-_nishtha_dalal.xlsx","data":"data/NiftyNext50_PE-_nishtha_dalal.js","key":"nn50"},"n500":{"kind":"xlsx","title":"Nifty 500 screen","file":"Nifty_500_-_group_4.xlsx","data":"data/Nifty_500_-_group_4.js","key":"n500"},"banks":{"kind":"xlsx","title":"Indian banks screen","file":"nishtha_dalal_Banks.xlsx","data":"data/nishtha_dalal_Banks.js","key":"banks"},"fpwp":{"kind":"xlsx","title":"Mutual fund allocation","file":"Nishtha_Dalal_-_FPWP_Project_Mutual_Fund_Allocation.xlsx","data":"data/Nishtha_Dalal_-_FPWP_Project_Mutual_Fund_Allocation.js","key":"fpwp"},"alx":{"kind":"xlsx","title":"Ashok Leyland credit model","file":"Ashok_Leyland_Credit_Analysis_FY24-FY26.xlsx","data":"data/Ashok_Leyland_Credit_Analysis_FY24-FY26.js","key":"alx"},"dmx":{"kind":"xlsx","title":"DMart snapshot, ratios and funding matrix","file":"DMart_Assignment2_Snapshot_and_Ratios.xlsx","data":"data/DMart_Assignment2_Snapshot_and_Ratios.js","key":"dmx"},"alr":{"kind":"docx","title":"Ashok Leyland: credit report","file":"Ashok_Leyland_Credit_Report.docx","data":"data/Ashok_Leyland_Credit_Report.js","href":"documents/Ashok_Leyland_Credit_Report.docx","key":"alr"},"alc":{"kind":"docx","title":"Ashok Leyland: credit committee sheet","file":"Ashok_Leyland_Credit_Committee_Sheet.docx","data":"data/Ashok_Leyland_Credit_Committee_Sheet.js","href":"documents/Ashok_Leyland_Credit_Committee_Sheet.docx","key":"alc"},"alk":{"kind":"docx","title":"Ashok Leyland: comparison with ICRA","file":"Ashok_Leyland_CRA_Comparison.docx","data":"data/Ashok_Leyland_CRA_Comparison.js","href":"documents/Ashok_Leyland_CRA_Comparison.docx","key":"alk"},"ali":{"kind":"docx","title":"Ashok Leyland: improvement plan","file":"Ashok_Leyland_Improvement_Plan.docx","data":"data/Ashok_Leyland_Improvement_Plan.js","href":"documents/Ashok_Leyland_Improvement_Plan.docx","key":"ali"},"dmc":{"kind":"docx","title":"DMart: funding route comparison","file":"DMart_BlockC_Funding_Route_Comparison.docx","data":"data/DMart_BlockC_Funding_Route_Comparison.js","href":"documents/DMart_BlockC_Funding_Route_Comparison.docx","key":"dmc"},"dmd":{"kind":"docx","title":"DMart: market and rating risk","file":"DMart_BlockD_Market_Rating_Risk.docx","data":"data/DMart_BlockD_Market_Rating_Risk.js","href":"documents/DMart_BlockD_Market_Rating_Risk.docx","key":"dmd"},"dmn":{"kind":"docx","title":"DMart: short note","file":"DMart_Short_Note.docx","data":"data/DMart_Short_Note.js","href":"documents/DMart_Short_Note.docx","key":"dmn"},"pe":{"kind":"deck","title":"Private equity sectoral analysis","file":"Private_Equity_Sectoral_Analysis.pdf","dir":"slides/Private_Equity_Sectoral_Analysis","n":25,"w":1100,"h":619,"href":"documents/Private_Equity_Sectoral_Analysis.pdf","key":"pe"},"dh":{"kind":"deck","title":"Dabur vs HUL: financial statement analysis","file":"Dabur_vs_HUL_Financial_Statement_Analysis.pdf","dir":"slides/Dabur_vs_HUL_Financial_Statement_Analysis","n":15,"w":1100,"h":619,"href":"documents/Dabur_vs_HUL_Financial_Statement_Analysis.pdf","key":"dh"},"fr":{"kind":"deck","title":"La Conquista 2025: final round deck","file":"La_Conquista_Final_Round_Deck.pdf","dir":"slides/La_Conquista_Final_Round_Deck","n":9,"w":1100,"h":619,"href":"documents/La_Conquista_Final_Round_Deck.pdf","key":"fr"}};
+    window.PF=window.PF||{};
+    var modal=document.getElementById('fileModal'),ttl=document.getElementById('fvTitle'),kindEl=document.getElementById('fvKind'),tabs=document.getElementById('fvTabs'),body=document.getElementById('fvBody'),dlBtn=document.getElementById('fvDl'),note=document.getElementById('fvNote'),closeB=document.getElementById('fvClose'),cur=null,curData=null,last=null,slide=0;
+    var KIND={xlsx:'Excel workbook',docx:'Word document',deck:'Presentation'};
+    var DLTXT={docx:'Download Word',deck:'Download PDF'};
+    function pad(n){return n<10?'0'+n:''+n;}
+    function slideSrc(f,i){return f.dir+'/slide-'+pad(i+1)+'.jpg';}
+    function loadData(f,ok,fail){
+      if(window.PF[f.key]){ok(window.PF[f.key]);return;}
+      var sc=document.createElement('script');sc.src=f.data;sc.async=true;
+      sc.onload=function(){window.PF[f.key]?ok(window.PF[f.key]):fail();};
+      sc.onerror=function(){sc.remove();fail();};
+      document.head.appendChild(sc);
+    }
+    function showSheet(i){var sh=curData.sheets[i];[].forEach.call(tabs.children,function(t,k){t.setAttribute('aria-selected',k===i?'true':'false');});body.innerHTML='<div class="tw">'+sh.html+'</div>';note.textContent=sh.note;body.scrollTop=0;}
+    function showSlide(i){var f=cur;slide=Math.max(0,Math.min(f.n-1,i));
+      body.innerHTML='<div class="deck"><img alt="'+f.title+', slide '+(slide+1)+'" src="'+slideSrc(f,slide)+'" width="'+f.w+'" height="'+f.h+'"><div class="deck-nav"><button type="button" class="btn" data-go="-1"'+(slide===0?' disabled':'')+'>Previous</button><span>Slide '+(slide+1)+' of '+f.n+'</span><button type="button" class="btn" data-go="1"'+(slide===f.n-1?' disabled':'')+'>Next</button></div></div>';
+      note.textContent='Use the arrow keys or the buttons to move through the slides.';
+      if(slide<f.n-1){var pre=new Image();pre.src=slideSrc(f,slide+1);}}
+    body.addEventListener('click',function(e){var g=e.target.closest('[data-go]');if(g&&cur)showSlide(slide+(+g.getAttribute('data-go')));});
+    function open(id){var f=FILES[id];if(!f)return;cur=f;curData=null;last=document.activeElement;
+      ttl.textContent=f.title;kindEl.textContent=KIND[f.kind]+' · '+f.file;tabs.innerHTML='';tabs.hidden=true;note.textContent='';
+      if(f.href){dlBtn.href=f.href;dlBtn.setAttribute('download',f.file);dlBtn.textContent=DLTXT[f.kind];dlBtn.hidden=false;}
+      else{dlBtn.removeAttribute('href');dlBtn.hidden=true;}
+      modal.hidden=false;document.body.style.overflow='hidden';body.scrollTop=0;closeB.focus();
+      if(f.kind==='deck'){showSlide(0);return;}
+      body.innerHTML='<p class="fv-loading">Loading…</p>';
+      loadData(f,function(data){
+        if(cur!==f)return;curData=data;
+        if(f.kind==='xlsx'){tabs.hidden=false;data.sheets.forEach(function(s,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=s.name;b.addEventListener('click',function(){showSheet(i);});tabs.appendChild(b);});showSheet(0);}
+        else{body.innerHTML='<article class="docv">'+data.html+'</article>';note.textContent='Formatted preview. Use Download for the original Word file.';}
+      },function(){if(cur!==f)return;body.innerHTML='<p class="fv-loading">This file could not be loaded. Please check your connection and try again.</p>';});}
+    function close(){modal.hidden=true;document.body.style.overflow='';cur=null;if(last)last.focus();}
+    document.addEventListener('click',function(e){var b=e.target.closest('[data-file]');if(!b)return;e.preventDefault();e.stopPropagation();open(b.getAttribute('data-file'));},true);
+    closeB.addEventListener('click',close);
+    modal.addEventListener('click',function(e){if(e.target===modal)close();});
+    document.addEventListener('keydown',function(e){if(modal.hidden)return;if(e.key==='Escape')close();if(cur&&cur.kind==='deck'){if(e.key==='ArrowRight')showSlide(slide+1);if(e.key==='ArrowLeft')showSlide(slide-1);}});
+  })();
+
+})();
+</script>
+</body>
+</html>
